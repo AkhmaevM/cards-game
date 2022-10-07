@@ -1,0 +1,76 @@
+$blue : #1950b5;
+$ligthblue: #C2F5FF;
+$darkblue: #004980;
+$mediumblue: #0080C1;
+$green: #7AC100;
+
+.cards {
+
+    &__start {
+        border-radius: 12px;
+        width: 480px;
+        height: 459px;
+        background: $ligthblue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10vw;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__form-title {
+        padding-bottom: 48px;
+        width: 208px;
+        height: 96px;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 48px;
+        text-align: center;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        color: $darkblue;
+    }
+
+    &__form-levels {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 24px;
+        padding-bottom: 67px;
+    }
+
+    &__form-levelHead {
+        width: 98px;
+        height: 98px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        width: 97px;
+        height: 98px;
+        font-family: 'StratosSkyeng';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 64px;
+        line-height: 72px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: $mediumblue;
+    }
+
+    &__form-level:checked+label {
+        border: 1px solid $mediumblue;
+    }
+
+    &__form-level {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+}

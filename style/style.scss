@@ -1,110 +1,58 @@
+@import 'form';
+@import 'game';
+
 @font-face {
     font-family: "StratosSkyeng";
     src: url("Web fonnts/stratosskyengweb-medium.woff") format("woff"),
-    url("Web fonnts/stratosskyengweb-medium.woff") format("woff");
+        url("Web fonnts/stratosskyengweb-medium.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-body{
-    background-color: #1950b5;
+$blue : #1950b5;
+$ligthblue: #C2F5FF;
+$darkblue: #004980;
+$mediumblue: #0080C1;
+$green: #7AC100;
+
+
+
+
+
+body {
+    background: $blue;
     font-style: normal;
     font-family: 'StratosSkyeng';
 }
 
-
 .cards{
-    margin-left: 30vw;
+    margin-left: 25vw;
     margin-top: 10vh;
-    width: 480px;
-    height: 459px;
-    background: #C2F5FF;
-    border-radius: 12px;
+    background: $blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+}
 
-    &__content{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.btn{
+    width: 246px;
+    height: 50px;
+    background: $green;
+    border-radius: 12px;
+    border: 0px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #FFFFFF;
+    justify-content: center;
+}
 
-    &__form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__form-title{
-        padding-bottom: 48px;
-        width: 208px;
-        height: 96px;
-        font-family: 'StratosSkyeng';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 40px;
-        line-height: 48px;
-        text-align: center;
-        font-feature-settings: 'pnum' on, 'lnum' on;
-        color: #004980;
-    }
-
-    &__form-levels{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        column-gap: 24px;
-        padding-bottom: 67px;
-    }
-
-    &__form-levelHead{
-        width: 98px;
-        height: 98px;
-        background: #FFFFFF;
-        border-radius: 12px;
-        width: 97px;
-        height: 98px;
-        font-family: 'StratosSkyeng';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 64px;
-        line-height: 72px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        color: #0080C1;
-    }
-
-    &__form-level:checked + label{
-        border: 1px solid #0080C1;
-    }
-
-   
-
-    &__form-level{
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-    }
-
-    &__form-btn{
-        width: 246px;
-        height: 50px;
-        background: #7AC100;
-        border-radius: 12px;
-        border: 0px;
-
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 32px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        font-feature-settings: 'pnum' on, 'lnum' on;
-        color: #FFFFFF;
-        justify-content: center;
-    }
+.hiden{
+    display: none;
 }
