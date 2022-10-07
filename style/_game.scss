@@ -1,0 +1,67 @@
+.cards{
+
+    &__game{
+        width: 1024px;
+        height: 700px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 35px;
+    }
+
+    &__game-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__game-time{
+        color: #ffff;
+        font-family: 'StratosSkyeng';
+        font-style: normal;
+        font-weight: 400;
+        width: 155px;
+    }
+    
+    &__game-wrapper{
+        display: flex;
+        flex-direction: row;
+        column-gap: 57px;
+        justify-content: flex-end;
+        margin-right: 14px;
+        height: 33px;
+    }
+
+    &__game-min, &__game-sek{
+        font-size: 16px;
+        line-height: 32px;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        color: #FFFFFF;
+    }
+
+    &__game-timer{
+        font-size: 64px;
+        line-height: 72px;
+        color: #FFFFFF;
+        font-weight: 400;
+    }
+
+    &__game-btn{
+        margin-top: 40px;
+    }
+
+    &__game-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: space-around
+    }
+
+    &__game-item{
+        width: 95px;
+        height: 133px;
+        background: url('img/card-bg.jpg');
+    }
+
+}

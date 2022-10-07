@@ -1,31 +1,13 @@
-@font-face {
-  font-family: "StratosSkyeng";
-  src: url("Web fonnts/stratosskyengweb-medium.woff") format("woff"), url("Web fonnts/stratosskyengweb-medium.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-body {
-  background-color: #1950b5;
-  font-style: normal;
-  font-family: "StratosSkyeng";
-}
-
-.cards {
-  margin-left: 30vw;
-  margin-top: 10vh;
+.cards__start {
+  border-radius: 12px;
   width: 480px;
   height: 459px;
   background: #C2F5FF;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.cards__content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-left: 10vw;
 }
 .cards__form {
   display: flex;
@@ -36,8 +18,6 @@ body {
   padding-bottom: 48px;
   width: 208px;
   height: 96px;
-  font-family: "StratosSkyeng";
-  font-style: normal;
   font-weight: 400;
   font-size: 40px;
   line-height: 48px;
@@ -79,7 +59,88 @@ body {
   z-index: -1;
   opacity: 0;
 }
-.cards__form-btn {
+
+.cards__game {
+  width: 1024px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 35px;
+}
+.cards__game-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.cards__game-time {
+  color: white;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  width: 155px;
+}
+.cards__game-wrapper {
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 57px;
+       column-gap: 57px;
+  justify-content: flex-end;
+  margin-right: 14px;
+  height: 33px;
+}
+.cards__game-min, .cards__game-sek {
+  font-size: 16px;
+  line-height: 32px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #FFFFFF;
+}
+.cards__game-timer {
+  font-size: 64px;
+  line-height: 72px;
+  color: #FFFFFF;
+  font-weight: 400;
+}
+.cards__game-btn {
+  margin-top: 40px;
+}
+.cards__game-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-around;
+}
+.cards__game-item {
+  width: 95px;
+  height: 133px;
+  background: url("img/card-bg.jpg");
+}
+
+@font-face {
+  font-family: "StratosSkyeng";
+  src: url("Web fonnts/stratosskyengweb-medium.woff") format("woff"), url("Web fonnts/stratosskyengweb-medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  background: #1950b5;
+  font-style: normal;
+  font-family: "StratosSkyeng";
+}
+
+.cards {
+  margin-left: 25vw;
+  margin-top: 10vh;
+  background: #1950b5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn {
   width: 246px;
   height: 50px;
   background: #7AC100;
@@ -94,4 +155,8 @@ body {
   font-feature-settings: "pnum" on, "lnum" on;
   color: #FFFFFF;
   justify-content: center;
+}
+
+.hiden {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
