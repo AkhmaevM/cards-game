@@ -1,29 +1,28 @@
-.cards{
-
-    &__game{
-        width: 1024px;
+.cards {
+    &__game {
+        width: 1034px;
         height: 700px;
         display: flex;
         flex-direction: column;
         row-gap: 35px;
     }
 
-    &__game-header{
+    &__game-header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
-    &__game-time{
+    &__game-time {
         color: #ffff;
         font-family: 'StratosSkyeng';
         font-style: normal;
         font-weight: 400;
         width: 155px;
     }
-    
-    &__game-wrapper{
+
+    &__game-wrapper {
         display: flex;
         flex-direction: row;
         column-gap: 57px;
@@ -32,36 +31,40 @@
         height: 33px;
     }
 
-    &__game-min, &__game-sek{
+    &__game-min,
+    &__game-sek {
         font-size: 16px;
         line-height: 32px;
         font-feature-settings: 'pnum' on, 'lnum' on;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
-    &__game-timer{
+    &__game-timer {
         font-size: 64px;
         line-height: 72px;
-        color: #FFFFFF;
+        color: #ffffff;
         font-weight: 400;
     }
 
-    &__game-btn{
+    &__game-btn {
         margin-top: 40px;
     }
 
-    &__game-list{
+    &__game-field {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 15px;
-        justify-content: space-around
+        justify-content: space-around;
+        width: 1034px;
     }
 
-    &__game-item{
+    &__game-item {
         width: 95px;
         height: 133px;
-        background: url('img/card-bg.jpg');
     }
 
+    &__game-item:hover{
+        cursor: pointer;
+    }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 let startTimerButton = document.querySelector('.startTimer');
 let pauseTimerButton = document.querySelector('.pauseTimer');
 let timerDisplay = document.querySelector('.timer');
@@ -9,17 +10,13 @@ function startTimer() {
     if (!running) {
         startTime = new Date().getTime();
         tInterval = setInterval(getShowTime, 1);
-        // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.   
+        // change 1 to 1000 above to run script every second instead of every millisecond. one other change will be needed in the getShowTime() function below for this to work. see comment there.
 
         paused = 0;
         running = 1;
-        
-        startTimerButton.classList.add('lighter');
-        pauseTimerButton.classList.remove('lighter');
-        startTimerButton.style.cursor = "auto";
-        pauseTimerButton.style.cursor = "pointer";
     }
 }
+
 function pauseTimer() {
     if (!difference) {
         // if timer never started, don't allow pause button to do anything
@@ -28,44 +25,46 @@ function pauseTimer() {
         savedTime = difference;
         paused = 1;
         running = 0;
-        
+
         startTimerButton.classList.remove('lighter');
         pauseTimerButton.classList.add('lighter');
-        startTimerButton.style.cursor = "pointer";
-        pauseTimerButton.style.cursor = "auto";
+        startTimerButton.style.cursor = 'pointer';
+        pauseTimerButton.style.cursor = 'auto';
     } else {
         // if the timer was already paused, when they click pause again, start the timer again
         startTimer();
     }
 }
+
 function resetTimer() {
     clearInterval(tInterval);
     savedTime = 0;
     difference = 0;
     paused = 0;
     running = 0;
-    timerDisplay.innerHTML = 'Start Timer!';
-    
-    timerDisplay.style.cursor = "pointer";
-    startTimerButton.classList.remove('lighter');
-    pauseTimerButton.classList.remove('lighter');
-    startTimerButton.style.cursor = "pointer";
-    pauseTimerButton.style.cursor = "auto";
+    timerDisplay.innerHTML = '00.00';
 }
 function getShowTime() {
     updatedTime = new Date().getTime();
     if (savedTime) {
-        difference = (updatedTime - startTime) + savedTime;
+        difference = updatedTime - startTime + savedTime;
     } else {
         difference = updatedTime - startTime;
     }
-    let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
     let milliseconds = Math.floor((difference % (1000 * 60)) / 100);
-    hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    seconds = (seconds < 10) ? "0" + seconds : seconds;
-    milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    milliseconds =
+        milliseconds < 100
+            ? milliseconds < 10
+                ? '00' + milliseconds
+                : '0' + milliseconds
+            : milliseconds;
     timerDisplay.innerHTML = minutes + ':' + seconds;
 }

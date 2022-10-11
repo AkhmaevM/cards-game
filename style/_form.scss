@@ -1,11 +1,10 @@
-$blue : #1950b5;
-$ligthblue: #C2F5FF;
+$blue: #1950b5;
+$ligthblue: #c2f5ff;
 $darkblue: #004980;
-$mediumblue: #0080C1;
-$green: #7AC100;
+$mediumblue: #0080c1;
+$green: #7ac100;
 
 .cards {
-
     &__start {
         border-radius: 12px;
         width: 480px;
@@ -47,7 +46,7 @@ $green: #7AC100;
     &__form-levelHead {
         width: 98px;
         height: 98px;
-        background: #FFFFFF;
+        background: #ffffff;
         border-radius: 12px;
         width: 97px;
         height: 98px;
@@ -63,7 +62,11 @@ $green: #7AC100;
         color: $mediumblue;
     }
 
-    &__form-level:checked+label {
+    &__form-levelHead:hover{
+        cursor: pointer;
+    }
+
+    &__form-level:checked + &__form-levelHead {
         border: 1px solid $mediumblue;
     }
 
