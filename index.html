@@ -1,122 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>index</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+            integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            rel="stylesheet"
+            href="style/Web fonts/stratosskyengweb-medium.woff"
+        />
+        <link rel="stylesheet" href="style/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-        integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style/Web fonts/stratosskyengweb-medium.woff">
-    <link rel="stylesheet" href="style/style.css">
-</head>
+    <body>
+        <div class="cards">
+            <div class="cards__start">
+                <form class="cards__form">
+                    <label for="level_choise" class="cards__form-title"
+                        >Выбери сложность</label
+                    >
 
-<body>
-    <div class="cards">
-        <div class="cards__start">
-            <form class="cards__form">
+                    <div class="cards__form-levels">
+                        <input
+                            type="radio"
+                            id="card__form-level-1"
+                            name="cards__form-option"
+                            value="easy"
+                            class="cards__form-level"
+                        />
+                        <label
+                            for="card__form-level-1"
+                            class="cards__form-levelHead"
+                            >1</label
+                        >
 
-                <label for="level_choise" class="cards__form-title">Выбери сложность</label>
+                        <input
+                            type="radio"
+                            id="card__form-level-2"
+                            name="cards__form-option"
+                            value="medium"
+                            class="cards__form-level"
+                        />
+                        <label
+                            for="card__form-level-2"
+                            class="cards__form-levelHead"
+                            >2</label
+                        >
 
-                <div class="cards__form-levels">
-                    <input type="radio" id="card__form-level-1" name="cards__form-option" value="easy"
-                        class="cards__form-level">
-                    <label for="card__form-level-1" class="cards__form-levelHead">1</label>
-
-                    <input type="radio" id="card__form-level-2" name="cards__form-option" value="medium"
-                        class="cards__form-level">
-                    <label for="card__form-level-2" class="cards__form-levelHead">2</label>
-
-                    <input type="radio" id="card__form-level-3" name="cards__form-option" value="hard"
-                        class="cards__form-level">
-                    <label for="card__form-level-3" class="cards__form-levelHead">3</label>
-                </div>
-
-                <button class="cards__form-btn btn">Старт</button>
-            </form>
-
-
-
-        </div>
-
-        <div class="cards__game hiden">
-
-            <div class="cards__game-header">
-                <div class="cards__game-time">
-                    <div class="cards__game-wrapper">
-                        <p class="cards__game-min">min</p>
-                        <p class="cards__game-sek">sek</p>
+                        <input
+                            type="radio"
+                            id="card__form-level-3"
+                            name="cards__form-option"
+                            value="hard"
+                            class="cards__form-level"
+                        />
+                        <label
+                            for="card__form-level-3"
+                            class="cards__form-levelHead"
+                            >3</label
+                        >
                     </div>
-                    <div class="cards__game-timer stopwatch timer"></div>
+
+                    <button class="cards__form-btn btn">Старт</button>
+                </form>
+            </div>
+
+            <div class="cards__game hiden">
+                <div class="cards__game-header">
+                    <div class="cards__game-time">
+                        <div class="cards__game-wrapper">
+                            <p class="cards__game-min">min</p>
+                            <p class="cards__game-sek">sek</p>
+                        </div>
+                        <div class="cards__game-timer timer">00.00</div>
+                    </div>
+
+                    <div class="cards__game-btn btn">Начать заново</div>
                 </div>
 
-                <div class="cards__game-btn btn">Начать заново</div>
-            </div>
-
-            <div class="cards__game-list">
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
-                <div class="cards__game-item"></div>
+                <div class="cards__game-field">
+                    <div class="cards__game-item item-1"></div>
+                    <div class="cards__game-item item-2"></div>
+                    <div class="cards__game-item item-3"></div>
+                    <div class="cards__game-item item-4"></div>
+                    <div class="cards__game-item item-5"></div>
+                    <div class="cards__game-item item-6"></div>
+                    <div class="cards__game-item item-7"></div>
+                    <div class="cards__game-item item-8"></div>
+                    <div class="cards__game-item item-9"></div>
+                    <div class="cards__game-item item-10"></div>
+                    <div class="cards__game-item item-11"></div>
+                    <div class="cards__game-item item-12"></div>
+                    <div class="cards__game-item item-13"></div>
+                    <div class="cards__game-item item-14"></div>
+                    <div class="cards__game-item item-15"></div>
+                    <div class="cards__game-item item-16"></div>
+                    <div class="cards__game-item item-17"></div>
+                    <div class="cards__game-item item-18"></div>
+                    <div class="cards__game-item item-19"></div>
+                    <div class="cards__game-item item-20"></div>
+                    <div class="cards__game-item item-21"></div>
+                    <div class="cards__game-item item-22"></div>
+                    <div class="cards__game-item item-23"></div>
+                    <div class="cards__game-item item-24"></div>
+                    <div class="cards__game-item item-25"></div>
+                    <div class="cards__game-item item-26"></div>
+                    <div class="cards__game-item item-27"></div>
+                    <div class="cards__game-item item-28"></div>
+                    <div class="cards__game-item item-29"></div>
+                    <div class="cards__game-item item-30"></div>
+                    <div class="cards__game-item item-31"></div>
+                    <div class="cards__game-item item-32"></div>
+                    <div class="cards__game-item item-33"></div>
+                    <div class="cards__game-item item-34"></div>
+                    <div class="cards__game-item item-35"></div>
+                    <div class="cards__game-item item-36"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div id="timerContainer">
-        <div class="timer" onclick="startTimer()">Start Timer!</div>
-        <div class="startTimer reset" onclick="startTimer()">
-            <i class="fas fa-play"></i>
-        </div>
-        <div class="pauseTimer reset" onclick="pauseTimer()">
-            <i class="fas fa-pause"></i>
-        </div>
-        <div class="resetTimer reset" onclick="resetTimer()">Reset</div>
-    </div> -->
+        <script src="src/stopwatch.js"></script>
+        <script src="src/script.js"></script>
 
-    <script src="src/stopwatch.js"></script>
-    <script src="src/script.js"></script>
-
-    <script>
-        
-    </script>
-
-</body>
-
+        <script></script>
+    </body>
 </html>

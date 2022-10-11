@@ -1,24 +1,20 @@
 @import 'form';
 @import 'game';
+@import 'cards-bg';
 
 @font-face {
-    font-family: "StratosSkyeng";
-    src: url("Web fonnts/stratosskyengweb-medium.woff") format("woff"),
-        url("Web fonnts/stratosskyengweb-medium.woff") format("woff");
+    font-family: 'StratosSkyeng';
+    src: url('Web fonnts/stratosskyengweb-medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: auto;
 }
 
-$blue : #1950b5;
-$ligthblue: #C2F5FF;
+$blue: #1950b5;
+$ligthblue: #c2f5ff;
 $darkblue: #004980;
-$mediumblue: #0080C1;
-$green: #7AC100;
-
-
-
-
+$mediumblue: #0080c1;
+$green: #7ac100;
 
 body {
     background: $blue;
@@ -26,17 +22,18 @@ body {
     font-family: 'StratosSkyeng';
 }
 
-.cards{
+.cards {
     margin-left: 25vw;
     margin-top: 10vh;
     background: $blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    cursor: pointer;
+    
+   
 }
 
-.btn{
+.btn {
     width: 246px;
     height: 50px;
     background: $green;
@@ -49,10 +46,18 @@ body {
     align-items: center;
     text-align: center;
     font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #FFFFFF;
+    color: #ffffff;
     justify-content: center;
 }
 
-.hiden{
+.btn:hover{
+    cursor: pointer;
+}
+
+.hiden {
     display: none;
+}
+
+.defaultCard{
+    background: url('./img/card-bg.jpg');
 }

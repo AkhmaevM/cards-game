@@ -1,1 +1,35 @@
-{}
+{
+    "devDependencies": {
+        "eslint": "^8.25.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.1",
+        "prettier": "^2.7.1",
+        "stylelint": "^14.13.0",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-standard": "^28.0.0",
+        "stylelint-prettier": "^2.0.0"
+    },
+    "name": "cards-game",
+    "description": "",
+    "version": "1.0.0",
+    "main": "src/script.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write .",
+        "lint:css": "stylelint style/**.css",
+        "lint:js": "eslint src/**.js",
+        "prepare": "husky install",
+        "lint": "npm run lint:js && npm run lint:css "
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AkhmaevM/cards-game.git"
+    },
+    "author": "Magomed Akhmaev",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AkhmaevM/cards-game/issues"
+    },
+    "homepage": "https://github.com/AkhmaevM/cards-game#readme"
+}
