@@ -17,10 +17,10 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write .",
-        "lint:css": "stylelint 'style/**.css'",
-        
+        "lint:css": "stylelint style/**.css",
+        "lint:js": "eslint src/**.js",
         "prepare": "husky install",
-        "lint": "npm run lint:css "
+        "lint": "npm run lint:js && npm run lint:css "
     },
     "repository": {
         "type": "git",
