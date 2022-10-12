@@ -1,8 +1,0 @@
-{
-    // форматирование кода при сохранении файла
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    }
-}
