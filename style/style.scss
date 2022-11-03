@@ -1,10 +1,11 @@
 @import 'form';
 @import 'game';
 @import 'cards-bg';
+@import 'finalScreen';
 
 @font-face {
-    font-family: 'StratosSkyeng';
-    src: url('Web fonnts/stratosskyengweb-medium.woff') format('woff');
+    font-family: 'StratosSkyeng', sans-serif;
+    src: url('style/Web fonts/stratosskyengweb-medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: auto;

@@ -5,3 +5,4 @@ node_modules
 .stylelintignore
 .stylelintrc.yml
 .husky
+.eslintrc.yml

@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 let startTimerButton = document.querySelector('.startTimer');
 let pauseTimerButton = document.querySelector('.pauseTimer');
-let timerDisplay = document.querySelector('.timer');
+let timerDisplay = document.querySelector('.cards__game-timer');
 let startTime, updatedTime, difference, tInterval, savedTime;
 let paused = 0;
 let running = 0;
@@ -26,10 +25,9 @@ function pauseTimer() {
         paused = 1;
         running = 0;
 
-        startTimerButton.classList.remove('lighter');
-        pauseTimerButton.classList.add('lighter');
-        startTimerButton.style.cursor = 'pointer';
-        pauseTimerButton.style.cursor = 'auto';
+        
+        // startTimerButton.style.cursor = 'pointer';
+        // pauseTimerButton.style.cursor = 'auto';
     } else {
         // if the timer was already paused, when they click pause again, start the timer again
         startTimer();
@@ -42,7 +40,6 @@ function resetTimer() {
     difference = 0;
     paused = 0;
     running = 0;
-    timerDisplay.innerHTML = '00.00';
 }
 function getShowTime() {
     updatedTime = new Date().getTime();
@@ -66,5 +63,5 @@ function getShowTime() {
                 ? '00' + milliseconds
                 : '0' + milliseconds
             : milliseconds;
-    timerDisplay.innerHTML = minutes + ':' + seconds;
+            document.querySelector('.timer').innerHTML = minutes + ':' + seconds;
 }
