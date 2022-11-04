@@ -4,7 +4,7 @@
 @import 'finalScreen';
 
 @font-face {
-    font-family: 'StratosSkyeng', sans-serif;
+    font-family: StratosSkyeng, sans-serif;
     src: url('style/Web fonts/stratosskyengweb-medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -20,7 +20,7 @@ $green: #7ac100;
 body {
     background: $blue;
     font-style: normal;
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
 }
 
 .cards {
