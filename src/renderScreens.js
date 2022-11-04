@@ -1,4 +1,12 @@
-function renderStartScreen() {
+export const cards = document.querySelector('.cards')
+export const cardsForm = document.querySelector('.cards__start')
+export const cardsFormLevel = document.querySelectorAll('.cards__form-level')
+export let clicks = 0
+export let target = 0
+export let randomsCardRang = []
+export let randomsCardSuit = []
+import { Handlebars } from 'node_modules/handlebars/dist/handlebars.js'
+export function renderStartScreen() {
     let startScreen = `
     <div class="cards__start">
     <form class="cards__form">
@@ -50,14 +58,14 @@ function renderStartScreen() {
         <button class="cards__form-btn btn">Старт</button>
     </form>
     </div>
-    `;
+    `
 
-    let template = Handlebars.compile(startScreen);
-    let result = template();
-    cards.innerHTML = result;
+    let template = Handlebars.compile(startScreen)
+    let result = template()
+    cards.innerHTML = result
 }
 
-function renderGameField() {
+export function renderGameField() {
     let gameFieldScreen = `
     <div class="cards__game">
     <div class="cards__game-header">
@@ -111,10 +119,10 @@ function renderGameField() {
         <div class="cards__game-item item-36 defaultCard"  id='6-4'></div>
     </div>
 </div>
-    `;
-    let template = Handlebars.compile(gameFieldScreen);
-    let result = template();
-    cards.innerHTML = result;
+    `
+    let template = Handlebars.compile(gameFieldScreen)
+    let result = template()
+    cards.innerHTML = result
 }
 
 // обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
@@ -124,10 +132,8 @@ function renderGameField() {
 // Пики - 1, Черви - 2, Бубны - 3, Крести - 4
 // Например Туз пики будет обозначен как 14-1, 7 Черви как 7-2 и т.д.
 
-
-
 // ключи данного объекта будут использоваться для генерации рандомного расположения всех карт после старта таймера
-let cardsObj = {
+export let cardsObj = {
     1: `<div class="cards__game-item item-1 defaultCard" id='14-1'></div>`,
     2: `<div class="cards__game-item item-2 defaultCard" id='13-1'></div>`,
     3: `<div class="cards__game-item item-3 defaultCard" id='12-1'></div>`,
@@ -164,23 +170,23 @@ let cardsObj = {
     34: `<div class="cards__game-item item-34 defaultCard" id='8-4'></div>`,
     35: `<div class="cards__game-item item-35 defaultCard" id='7-4'></div>`,
     36: `<div class="cards__game-item item-36 defaultCard" id='6-4'></div>`,
-};
+}
 
-
-function renderResultsScreen(){
+export function renderResultsScreen() {
     let resultScreen = `
     <div class="cards__final">
         <img src="style/img/win-screen.png" alt="winscreen img" class="cards__final-image">
         <h2 class="cards__final-title"></h2>
         <div class="cards__final-timer">
             <p class="cards__final-timer--text">Затраченное время</p>
-            <div class="cards__final-timer--numbers timer">${ document.querySelector('.timer').innerHTML}</div>
+            <div class="cards__final-timer--numbers timer">${
+                document.querySelector('.timer').innerHTML
+            }</div>
         </div>
         <button class="cards__final-btn btn">Играть снова</button>
     </div>
     `
-    let template = Handlebars.compile(resultScreen);
-    let result = template();
-    document.querySelector('.cards').innerHTML += result;
+    let template = Handlebars.compile(resultScreen)
+    let result = template()
+    document.querySelector('.cards').innerHTML += result
 }
-

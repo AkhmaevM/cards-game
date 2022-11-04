@@ -1,9 +1,4 @@
 {
- 
-    "optionalDependencies": {
-      "fsevents": "*"
-    }
-    ,
     "devDependencies": {
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
@@ -12,10 +7,13 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
         "html-webpack-plugin": "^5.5.0",
+        "husky": "^8.0.1",
         "mini-css-extract-plugin": "^2.6.1",
         "prettier": "^2.7.1",
+        "sass": "^1.56.0",
+        "sass-loader": "^13.1.0",
         "style-loader": "^3.3.1",
-        "stylelint": "^14.13.0",
+        "stylelint": "^14.14.1",
         "stylelint-config-prettier": "^9.0.3",
         "stylelint-config-standard": "^28.0.0",
         "stylelint-prettier": "^2.0.0",
@@ -48,6 +46,10 @@
     },
     "homepage": "https://github.com/AkhmaevM/cards-game#readme",
     "dependencies": {
-        "git": "^0.1.5"
+        "git": "^0.1.5",
+        "handlebars": "^4.7.7",
+        "handlebars-webpack-plugin": "^2.2.1",
+        "http-server": "^14.1.1",
+        "lodash": "^4.17.21"
     }
 }

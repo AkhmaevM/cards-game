@@ -5,7 +5,7 @@ let startTime, updatedTime, difference, tInterval, savedTime;
 let paused = 0;
 let running = 0;
 
-function startTimer() {
+export function startTimer() {
     if (!running) {
         startTime = new Date().getTime();
         tInterval = setInterval(getShowTime, 1);
@@ -16,7 +16,7 @@ function startTimer() {
     }
 }
 
-function pauseTimer() {
+export function pauseTimer() {
     if (!difference) {
         // if timer never started, don't allow pause button to do anything
     } else if (!paused) {
@@ -34,14 +34,14 @@ function pauseTimer() {
     }
 }
 
-function resetTimer() {
+export function resetTimer() {
     clearInterval(tInterval);
     savedTime = 0;
     difference = 0;
     paused = 0;
     running = 0;
 }
-function getShowTime() {
+export function getShowTime() {
     updatedTime = new Date().getTime();
     if (savedTime) {
         difference = updatedTime - startTime + savedTime;
