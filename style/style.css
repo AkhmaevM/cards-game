@@ -1,5 +1,5 @@
-/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 /* stylelint-disable selector-class-pattern */
+
 .cards__start {
     border-radius: 12px;
     width: 480px;
@@ -124,6 +124,7 @@
 .cards__game-field {
     display: flex;
     flex-direction: row;
+    /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
     flex-wrap: wrap;
     gap: 15px;
     justify-content: space-around;
@@ -288,7 +289,7 @@
     height: 459px;
     background: #c2f5ff;
     border-radius: 12px;
-    margin-left: 20vw;
+    margin-left: 12vw;
     margin-top: 15vh;
     display: flex;
     flex-direction: column;
@@ -360,7 +361,7 @@
 
 @font-face {
     font-family: StratosSkyeng, sans-serif;
-    src: url('style/Web fonts/stratosskyengweb-medium.woff') format('woff');
+    src: url('../Web_fonts/stratosskyengweb-medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: auto;

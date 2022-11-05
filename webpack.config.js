@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+// const CopyPlugin = require('copy-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
@@ -12,16 +12,24 @@ module.exports = {
         filename: 'bundle.js',
         clean: true,
     },
+    resolve: {
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js',
+        },
+    },
     module: {
         rules: [
-            { test: /\.css$/, use: [MiniCssExtractPlugin, 'css-loader'] },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'assets/resource',
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'assets/resource',
+                type: 'asset/resource',
             },
         ],
     },
@@ -30,11 +38,11 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: './index.html',
+            template: 'dist/index.html',
         }),
-        new CopyPlugin({
-            patterns: [{ from: 'static', to: 'static' }],
-        }),
+        // new CopyPlugin({
+        //     patterns: [{ from: 'static', to: 'static' }],
+        // }),
         new MiniCssExtractPlugin(),
     ],
     devtool: isProduction ? 'hidden-source-map' : 'source-map',
