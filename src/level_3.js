@@ -5,7 +5,8 @@ import {
     renderResultsScreen,
     cardsObj,
 } from './renderScreens'
-
+import looseScreen from '../style/img/loose-screen.png'
+import winScreen from '../style/img/win-screen.png'
 export function thirdLevel() {
     let clicks = 0
     let target = 0
@@ -157,8 +158,8 @@ export function thirdLevel() {
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 )
-                                finalScrImg.src = 'style/img/win-screen.png'
-                                finalTitle.textContent = 'Вы выиграли!'
+                                finalScrImg.src = './style/img/win-screen.png'
+                                finalTitle.textContent = winScreen
                                 document.querySelector(
                                     '.cards__game'
                                 ).style.opacity = '0.7'
@@ -183,7 +184,7 @@ export function thirdLevel() {
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 )
-                                finalScrImg.src = 'style/img/loose-screen.png'
+                                finalScrImg.src = looseScreen
                                 finalTitle.textContent = 'Вы проиграли!'
                                 document.querySelector(
                                     '.cards__game'
