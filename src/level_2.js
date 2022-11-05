@@ -1,16 +1,16 @@
-const { startTimer } = require('./lib/stopwatch')
-const { pauseTimer } = require('./lib/stopwatch')
-const { resetTimer } = require('./lib/stopwatch')
-const { renderStartScreen } = require('./renderScreens.js')
-const { renderGameField } = require('./renderScreens')
-const { cardsObj } = require('./renderScreens')
-const { renderResultsScreen } = require('./renderScreens')
-let { clicks } = require('./renderScreens')
-let { target } = require('./renderScreens')
-let { randomsCardRang } = require('./renderScreens')
-let { randomsCardSuit } = require('./renderScreens')
+import { startTimer, pauseTimer, resetTimer } from './lib/stopwatch'
+import {
+    renderStartScreen,
+    renderGameField,
+    renderResultsScreen,
+    cardsObj,
+} from './renderScreens'
 
 export function secondLevel() {
+    let clicks = 0
+    let target = 0
+    let randomsCardRang = []
+    let randomsCardSuit = []
     const cardsFormBtn = document.querySelector('.cards__form-btn')
     cardsFormBtn.addEventListener('click', (e) => {
         e.preventDefault()
