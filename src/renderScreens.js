@@ -1,11 +1,9 @@
 export const cards = document.querySelector('.cards')
 export const cardsForm = document.querySelector('.cards__start')
 export const cardsFormLevel = document.querySelectorAll('.cards__form-level')
-export let clicks = 0
-export let target = 0
-export let randomsCardRang = []
-export let randomsCardSuit = []
-import { Handlebars } from 'node_modules/handlebars/dist/handlebars.js'
+
+import Handlebars from 'handlebars'
+
 export function renderStartScreen() {
     let startScreen = `
     <div class="cards__start">

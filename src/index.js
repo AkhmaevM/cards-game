@@ -1,8 +1,8 @@
-const { renderStartScreen } = require('./renderScreens.js')
-const { firstLevel } = require('./level_1')
-const { secondLevel } = require('./level_2')
-const { thirdLevel } = require('./level_3')
-
+import { renderStartScreen } from './renderScreens.js'
+import { firstLevel } from './level_1'
+import { secondLevel } from './level_2'
+import { thirdLevel } from './level_3'
+import 'style/style.css'
 addEventListener('DOMContentLoaded', () => {
     renderStartScreen()
 
