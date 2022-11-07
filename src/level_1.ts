@@ -9,85 +9,99 @@ import {
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function firstLevel() {
-    let clicks = 0
-    let target = 0
-    const cardsFormBtn = document.querySelector('.cards__form-btn')
+    let clicks:number = 0
+    let target:number = 0
+    const cardsFormBtn = document.querySelector('.cards__form-btn') as HTMLElement 
     cardsFormBtn.addEventListener('click', (e) => {
         e.preventDefault()
         renderGameField()
 
         const cardsGameField = document.querySelector('.cards__game-field')
 
-        let cardRangIdInSting = ''
-        let cardSuitIdInSting = ''
-        let secondCardSuitIdInSting = ''
+        let cardRangIdInSting:string = ''
+        let cardSuitIdInSting:string = ''
+        let secondCardSuitIdInSting:string = ''
 
         // генерация массива ранодомных рангов карт (от 6 до туза)
-        let randomsCardRang = []
-        while (randomsCardRang.length < 3) {
-            let random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
+        let randomsCardRang:number[] = []
 
-            if (randomsCardRang.indexOf(random) === -1) {
-                randomsCardRang.push(random)
+        if(randomsCardRang !==undefined){
+            while (randomsCardRang.length < 3) {
+                let random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
+    
+                if (randomsCardRang.indexOf(random) === -1) {
+                    randomsCardRang.push(random)
+                }
             }
         }
+      
 
         // генерация массива рандомных мастей карт
-        let randomsCardSuit = []
+        let randomsCardSuit:number [] = []
         while (randomsCardSuit.length < 4) {
             let random = Math.ceil(1 + Math.floor(Math.random() * 4))
-            if (randomsCardSuit.indexOf(random) === -1) {
-                randomsCardSuit.push(random)
+            if (randomsCardSuit!.indexOf(random) === -1) {
+                randomsCardSuit!.push(random)
             }
         }
 
         // в данные массивы будут записываться id пар карт, которые нужно найти
-        let firstTargetArr = []
-        let secondTargetArr = []
+        let firstTargetArr : string[] = []
+        let secondTargetArr : string[] =[]
 
         // процесс показа рандомных карт:
-        for (let i = 0; i < 3; i++) {
-            cardRangIdInSting = String(randomsCardRang[i])
-            cardSuitIdInSting = String(randomsCardSuit[i])
-            secondCardSuitIdInSting = String(randomsCardSuit[i + 1])
-            document
-                .getElementById(
-                    `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                )
-                .classList.remove('defaultCard')
-
-            document
-                .getElementById(
-                    `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                )
-                .classList.remove('defaultCard')
-
-            firstTargetArr[i] = document.getElementById(
-                `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-            ).id
-            secondTargetArr[i] = document.getElementById(
-                `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-            ).id
+        if(randomsCardRang){
+            for (let i = 0; i < 3; i++) {
+                cardRangIdInSting = String(randomsCardRang[i])
+                if (randomsCardSuit!) {
+                    cardSuitIdInSting = String(randomsCardSuit[i])
+                    secondCardSuitIdInSting = String(randomsCardSuit[i + 1])
+                }
+                document
+                    .getElementById(
+                        `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
+                    )!
+                    .classList.remove('defaultCard')
+    
+                document
+                    .getElementById(
+                        `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
+                    )!
+                    .classList.remove('defaultCard')
+                
+                if (firstTargetArr && secondTargetArr) {
+                    firstTargetArr[i] = document.getElementById(
+                        `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
+                    )!.id
+                    secondTargetArr[i] = document.getElementById(
+                        `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
+                    )!.id
+                }
+               
+            }
         }
+      
 
-        console.log(firstTargetArr)
-        console.log(secondTargetArr)
+       
+        
 
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
-            cardsGameField.innerHTML = ''
+            cardsGameField!.innerHTML = ''
 
-            let randoms = []
+            let randoms: number[] =[]
             while (randoms.length < 36) {
-                let random = Math.ceil(1 + Math.floor(Math.random() * 36))
+                let random:number = Math.ceil(1 + Math.floor(Math.random() * 36))
                 if (randoms.indexOf(random) === -1) {
                     randoms.push(random)
                 }
             }
-            console.log(randoms)
+            console.log(randoms!)
 
-            for (let i = 0; i < 36; i++) {
-                cardsGameField.innerHTML += cardsObj[randoms[i]]
+            if (randoms !== undefined) {
+                for (let i:number = 0; i < 36; i++) {
+                    cardsGameField!.innerHTML += cardsObj[randoms[i]]
+                }
             }
         }
 
@@ -98,7 +112,7 @@ export function firstLevel() {
 
             // кнопка рестарта
             const cardsGameBtn = document.querySelector('.cards__game-btn')
-            cardsGameBtn.addEventListener('click', () => {
+            cardsGameBtn?.addEventListener('click', () => {
                 renderStartScreen()
                 resetTimer()
             })
@@ -111,15 +125,17 @@ export function firstLevel() {
                     clicks++
 
                     // если игрок угадал загаданную карту, добавляется 1 балл
+                  if (firstTargetArr && secondTargetArr) {
                     if (
                         firstTargetArr.includes(cardItem[i].id) ||
                         secondTargetArr.includes(cardItem[i].id)
                     ) {
                         target++
-                        cardItem[i].style.border = '2px solid green'
+                        (cardItem[i] as HTMLElement).style.border = '2px solid green'
                     } else {
-                        cardItem[i].style.border = '2px solid red'
+                        (cardItem[i] as HTMLElement).style.border = '2px solid red'
                     }
+                  }
 
                     // проверка количества открытых карт
                     if (clicks === 6) {
@@ -133,14 +149,15 @@ export function firstLevel() {
                                 )
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
-                                )
-                                finalScrImg.src = winScreen
-                                finalTitle.textContent = 'Вы выиграли!'
-                                document.querySelector(
+                                ) as HTMLImageElement | null
+                                finalScrImg!.src = winScreen
+                                finalTitle!.textContent = 'Вы выиграли!';
+                                const gameField = document.querySelector(
                                     '.cards__game'
-                                ).style.opacity = '0.7'
+                                ) as HTMLElement | null
+                                gameField!.style.opacity = '0.7'
                                 document
-                                    .querySelector('.cards__final-btn')
+                                    .querySelector('.cards__final-btn')!
                                     .addEventListener('click', (e) => {
                                         e.preventDefault()
                                         renderStartScreen()
@@ -159,14 +176,15 @@ export function firstLevel() {
                                 )
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
-                                )
-                                finalScrImg.src = looseScreen
-                                finalTitle.textContent = 'Вы проиграли!'
-                                document.querySelector(
+                                ) as HTMLImageElement | null
+                                finalScrImg!.src = looseScreen
+                                finalTitle!.textContent = 'Вы проиграли!'
+                                const gameField = document.querySelector(
                                     '.cards__game'
-                                ).style.opacity = '0.7'
+                                ) as HTMLElement | null
+                                gameField!.style.opacity = '0.7'
                                 document
-                                    .querySelector('.cards__final-btn')
+                                    .querySelector('.cards__final-btn')!
                                     .addEventListener('click', (e) => {
                                         e.preventDefault()
                                         renderStartScreen()

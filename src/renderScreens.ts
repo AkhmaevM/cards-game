@@ -2,7 +2,7 @@ export const cards = document.querySelector('.cards')
 export const cardsForm = document.querySelector('.cards__start')
 export const cardsFormLevel = document.querySelectorAll('.cards__form-level')
 
-import Handlebars from 'handlebars'
+import * as Handlebars from 'handlebars'
 
 export function renderStartScreen() {
     let startScreen = `
@@ -59,8 +59,8 @@ export function renderStartScreen() {
     `
 
     let template = Handlebars.compile(startScreen)
-    let result = template()
-    cards.innerHTML = result
+    let result = template('')
+    cards!.innerHTML = result
 }
 
 export function renderGameField() {
@@ -119,8 +119,8 @@ export function renderGameField() {
 </div>
     `
     let template = Handlebars.compile(gameFieldScreen)
-    let result = template()
-    cards.innerHTML = result
+    let result = template('')
+    cards!.innerHTML = result
 }
 
 // обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
@@ -131,7 +131,7 @@ export function renderGameField() {
 // Например Туз пики будет обозначен как 14-1, 7 Черви как 7-2 и т.д.
 
 // ключи данного объекта будут использоваться для генерации рандомного расположения всех карт после старта таймера
-export let cardsObj = {
+export let cardsObj :{[key: number]: string} ={
     1: `<div class="cards__game-item item-1 defaultCard" id='14-1'></div>`,
     2: `<div class="cards__game-item item-2 defaultCard" id='13-1'></div>`,
     3: `<div class="cards__game-item item-3 defaultCard" id='12-1'></div>`,
@@ -178,13 +178,13 @@ export function renderResultsScreen() {
         <div class="cards__final-timer">
             <p class="cards__final-timer--text">Затраченное время</p>
             <div class="cards__final-timer--numbers timer">${
-                document.querySelector('.timer').innerHTML
+                document.querySelector('.timer')!.innerHTML
             }</div>
         </div>
         <button class="cards__final-btn btn">Играть снова</button>
     </div>
     `
     let template = Handlebars.compile(resultScreen)
-    let result = template()
-    document.querySelector('.cards').innerHTML += result
+    let result = template('')
+    document.querySelector('.cards')!.innerHTML += result
 }

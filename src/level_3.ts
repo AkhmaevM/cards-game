@@ -8,11 +8,11 @@ import {
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function thirdLevel() {
-    let clicks = 0
-    let target = 0
-    let randomsCardRang = []
-    let randomsCardSuit = []
-    const cardsFormBtn = document.querySelector('.cards__form-btn')
+    let clicks:number = 0
+    let target:number = 0
+    let randomsCardRang:number []
+    let randomsCardSuit:number []
+    const cardsFormBtn = document.querySelector('.cards__form-btn') as HTMLElement
     cardsFormBtn.addEventListener('click', (e) => {
         e.preventDefault()
         renderGameField()
@@ -23,12 +23,13 @@ export function thirdLevel() {
         let cardSuitIdInSting = ''
         let secondCardSuitIdInSting = ''
 
-        let myArray = [6, 7, 8, 9, 10, 11, 12, 13, 14]
+        let myArray: number []
+        myArray = [6,7,8,9,10,11,12,13,14]
         randomsCardRang = shuffle(myArray)
 
-        function shuffle(o) {
+        function shuffle(o:Array<number>) {
             for (
-                var j, x, i = o.length;
+                let j:number, x:number, i:number = o.length;
                 i;
                 j = Math.floor(Math.random() * i),
                     x = o[--i],
@@ -42,8 +43,8 @@ export function thirdLevel() {
         console.log(randomsCardSuit)
 
         // в данные массивы будут записываться id пар карт, которые нужно найти
-        let firstTargetArr = []
-        let secondTargetArr = []
+        let firstTargetArr  :string [] = []
+        let secondTargetArr :string [] = []
 
         // процесс показа рандомных карт:
         for (let i = 0; i < 9; i++) {
@@ -66,31 +67,31 @@ export function thirdLevel() {
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                )
+                )!
                 .classList.remove('defaultCard')
 
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                )
+                )!
                 .classList.remove('defaultCard')
 
-            firstTargetArr[i] = document.getElementById(
+            firstTargetArr![i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-            ).id
-            secondTargetArr[i] = document.getElementById(
+            )!.id
+            secondTargetArr![i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-            ).id
+            )!.id
 
             console.log(
                 document.getElementById(
                     `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                ).id
+                )!.id
             )
             console.log(
                 document.getElementById(
                     `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                ).id
+                )!.id
             )
         }
 
@@ -99,7 +100,7 @@ export function thirdLevel() {
 
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
-            cardsGameField.innerHTML = ''
+            cardsGameField!.innerHTML = ''
 
             let randoms = []
             while (randoms.length < 36) {
@@ -111,7 +112,7 @@ export function thirdLevel() {
             console.log(randoms)
 
             for (let i = 0; i < 36; i++) {
-                cardsGameField.innerHTML += cardsObj[randoms[i]]
+                cardsGameField!.innerHTML += cardsObj[randoms[i]]
             }
         }
 
@@ -122,7 +123,7 @@ export function thirdLevel() {
 
             // кнопка рестарта
             const cardsGameBtn = document.querySelector('.cards__game-btn')
-            cardsGameBtn.addEventListener('click', () => {
+            cardsGameBtn!.addEventListener('click', () => {
                 renderStartScreen()
                 resetTimer()
             })
@@ -136,13 +137,13 @@ export function thirdLevel() {
 
                     // если игрок угадал загаданную карту, добавляется 1 балл
                     if (
-                        firstTargetArr.includes(cardItem[i].id) ||
-                        secondTargetArr.includes(cardItem[i].id)
+                        firstTargetArr!.includes(cardItem[i].id) ||
+                        secondTargetArr!.includes(cardItem[i].id)
                     ) {
-                        cardItem[i].style.border = '2px solid green'
+                        (cardItem[i] as HTMLElement).style.border = '2px solid green'
                         target++
                     } else {
-                        cardItem[i].style.border = '2px solid red'
+                        (cardItem[i] as HTMLElement).style.border = '2px solid red'
                     }
 
                     // проверка количества открытых карт
@@ -157,14 +158,15 @@ export function thirdLevel() {
                                 )
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
-                                )
-                                finalScrImg.src = './style/img/win-screen.png'
-                                finalTitle.textContent = winScreen
-                                document.querySelector(
+                                ) as HTMLImageElement
+                                finalScrImg!.src = './style/img/win-screen.png'
+                                finalTitle!.textContent = winScreen
+                                const gameField = document.querySelector(
                                     '.cards__game'
-                                ).style.opacity = '0.7'
+                                ) as HTMLElement
+                                gameField.style.opacity = '0.7'
                                 document
-                                    .querySelector('.cards__final-btn')
+                                    .querySelector('.cards__final-btn')!
                                     .addEventListener('click', (e) => {
                                         e.preventDefault()
                                         renderStartScreen()
@@ -183,14 +185,15 @@ export function thirdLevel() {
                                 )
                                 let finalScrImg = document.querySelector(
                                     '.cards__final-image'
-                                )
-                                finalScrImg.src = looseScreen
-                                finalTitle.textContent = 'Вы проиграли!'
-                                document.querySelector(
+                                ) as HTMLImageElement
+                                finalScrImg!.src = looseScreen
+                                finalTitle!.textContent = 'Вы проиграли!'
+                                const gameField = document.querySelector(
                                     '.cards__game'
-                                ).style.opacity = '0.7'
+                                ) as HTMLElement
+                                gameField!.style.opacity = '0.7'
                                 document
-                                    .querySelector('.cards__final-btn')
+                                    .querySelector('.cards__final-btn')!
                                     .addEventListener('click', (e) => {
                                         e.preventDefault()
                                         renderStartScreen()
