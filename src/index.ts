@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { renderStartScreen } from './renderScreens.js'
+import { renderStartScreen } from './renderScreens'
 import { firstLevel } from './level_1'
 import { secondLevel } from './level_2'
 import { thirdLevel } from './level_3'
-// eslint-disable-next-line no-unused-vars
-import style from '../style/style.css'
+import '../style/style.css'
 
 addEventListener('DOMContentLoaded', () => {
     renderStartScreen()
@@ -13,15 +12,15 @@ addEventListener('DOMContentLoaded', () => {
     const mediumLevel = document.querySelector('.medium')
     const hardLevel = document.querySelector('.hard')
 
-    easyLevel.addEventListener('click', () => {
+    easyLevel?.addEventListener('click', () => {
         firstLevel()
     })
 
-    mediumLevel.addEventListener('click', () => {
+    mediumLevel?.addEventListener('click', () => {
         secondLevel()
     })
 
-    hardLevel.addEventListener('click', () => {
+    hardLevel?.addEventListener('click', () => {
         thirdLevel()
     })
 })
