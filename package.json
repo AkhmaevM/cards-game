@@ -3,7 +3,7 @@
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
         "css-minimizer-webpack-plugin": "^4.2.2",
-        "eslint": "^8.25.0",
+        "eslint": "^8.27.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
         "handlebars-webpack-plugin": "^2.2.1",
@@ -37,13 +37,12 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write .",
+        "lint:ts": "eslint src/**.ts",
         "lint:css": "stylelint style/**.css",
-        "lint:js": "eslint src/**.ts",
         "prepare": "husky install",
-        "lint": "npm run lint:js && npm run lint:css",
+        "lint": "npm run lint:ts && npm run lint:css",
         "build": "SET NODE_ENV='production' && webpack",
-        "start": "webpack-dev-server --open",
-        "lint:ts": "tsc --NoEmit"
+        "start": "webpack-dev-server --open"
     },
     "repository": {
         "type": "git",
@@ -56,6 +55,8 @@
     },
     "homepage": "https://github.com/AkhmaevM/cards-game#readme",
     "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.42.1",
+        "@typescript-eslint/parser": "^5.42.1",
         "git": "^0.1.5",
         "handlebars": "^4.7.7",
         "http-server": "^14.1.1",

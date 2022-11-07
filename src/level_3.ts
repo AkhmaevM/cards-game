@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { startTimer, pauseTimer, resetTimer } from './lib/stopwatch'
 import {
     renderStartScreen,
@@ -8,8 +9,8 @@ import {
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function thirdLevel() {
-    let clicks:number = 0
-    let target:number = 0
+    let clicks = 0
+    let target = 0
     let randomsCardRang:number []
     let randomsCardSuit:number []
     const cardsFormBtn = document.querySelector('.cards__form-btn') as HTMLElement
@@ -23,10 +24,10 @@ export function thirdLevel() {
         let cardSuitIdInSting = ''
         let secondCardSuitIdInSting = ''
 
-        let myArray: number []
-        myArray = [6,7,8,9,10,11,12,13,14]
+        // генерация массива рангов
+        const myArray: number [] = [6,7,8,9,10,11,12,13,14]
+        // myArray = [6,7,8,9,10,11,12,13,14]
         randomsCardRang = shuffle(myArray)
-
         function shuffle(o:Array<number>) {
             for (
                 let j:number, x:number, i:number = o.length;
@@ -43,16 +44,16 @@ export function thirdLevel() {
         console.log(randomsCardSuit)
 
         // в данные массивы будут записываться id пар карт, которые нужно найти
-        let firstTargetArr  :string [] = []
-        let secondTargetArr :string [] = []
+        const firstTargetArr  :string [] = []
+        const secondTargetArr :string [] = []
 
         // процесс показа рандомных карт:
         for (let i = 0; i < 9; i++) {
-            let randomSuitIndex = Math.ceil(1 + Math.floor(Math.random() * 4))
+            const randomSuitIndex = Math.ceil(1 + Math.floor(Math.random() * 4))
             let secondSuitIndex = Math.ceil(1 + Math.floor(Math.random() * 4))
             cardRangIdInSting = String(randomsCardRang[i])
             cardSuitIdInSting = String(secondSuitIndex)
-
+            
             secondCardSuitIdInSting = String(randomSuitIndex)
             if (randomSuitIndex === secondSuitIndex && randomSuitIndex === 4) {
                 secondSuitIndex -= 1
@@ -67,19 +68,17 @@ export function thirdLevel() {
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                )!
-                .classList.remove('defaultCard')
+                )?.classList.remove('defaultCard')
 
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                )!
-                .classList.remove('defaultCard')
+                )?.classList.remove('defaultCard')
 
-            firstTargetArr![i] = document.getElementById(
+            firstTargetArr[i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
             )!.id
-            secondTargetArr![i] = document.getElementById(
+            secondTargetArr[i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
             )!.id
 
@@ -102,9 +101,9 @@ export function thirdLevel() {
         function randomizeCardsPosition() {
             cardsGameField!.innerHTML = ''
 
-            let randoms = []
+            const randoms = []
             while (randoms.length < 36) {
-                let random = Math.ceil(1 + Math.floor(Math.random() * 36))
+                const random = Math.ceil(1 + Math.floor(Math.random() * 36))
                 if (randoms.indexOf(random) === -1) {
                     randoms.push(random)
                 }
@@ -153,10 +152,10 @@ export function thirdLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement
                                 finalScrImg!.src = './style/img/win-screen.png'
@@ -180,10 +179,10 @@ export function thirdLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement
                                 finalScrImg!.src = looseScreen

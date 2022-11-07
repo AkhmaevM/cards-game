@@ -3,7 +3,9 @@ import { renderStartScreen } from './renderScreens'
 import { firstLevel } from './level_1'
 import { secondLevel } from './level_2'
 import { thirdLevel } from './level_3'
+
 import '../style/style.css'
+
 
 addEventListener('DOMContentLoaded', () => {
     renderStartScreen()

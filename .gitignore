@@ -6,4 +6,4 @@ node_modules
 .stylelintrc.yml
 .husky
 .eslintrc.yml
-dist/
+dist

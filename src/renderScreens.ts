@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export const cards = document.querySelector('.cards')
 export const cardsForm = document.querySelector('.cards__start')
 export const cardsFormLevel = document.querySelectorAll('.cards__form-level')
@@ -5,7 +6,7 @@ export const cardsFormLevel = document.querySelectorAll('.cards__form-level')
 import * as Handlebars from 'handlebars'
 
 export function renderStartScreen() {
-    let startScreen = `
+    const startScreen = `
     <div class="cards__start">
     <form class="cards__form">
         <label for="level_choise" class="cards__form-title"
@@ -58,13 +59,13 @@ export function renderStartScreen() {
     </div>
     `
 
-    let template = Handlebars.compile(startScreen)
-    let result = template('')
+    const template = Handlebars.compile(startScreen)
+    const result = template('')
     cards!.innerHTML = result
 }
 
 export function renderGameField() {
-    let gameFieldScreen = `
+    const gameFieldScreen = `
     <div class="cards__game">
     <div class="cards__game-header">
         <div class="cards__game-time">
@@ -118,8 +119,8 @@ export function renderGameField() {
     </div>
 </div>
     `
-    let template = Handlebars.compile(gameFieldScreen)
-    let result = template('')
+    const template = Handlebars.compile(gameFieldScreen)
+    const result = template('')
     cards!.innerHTML = result
 }
 
@@ -131,7 +132,7 @@ export function renderGameField() {
 // Например Туз пики будет обозначен как 14-1, 7 Черви как 7-2 и т.д.
 
 // ключи данного объекта будут использоваться для генерации рандомного расположения всех карт после старта таймера
-export let cardsObj :{[key: number]: string} ={
+export const cardsObj :{[key: number]: string} ={
     1: `<div class="cards__game-item item-1 defaultCard" id='14-1'></div>`,
     2: `<div class="cards__game-item item-2 defaultCard" id='13-1'></div>`,
     3: `<div class="cards__game-item item-3 defaultCard" id='12-1'></div>`,
@@ -171,7 +172,7 @@ export let cardsObj :{[key: number]: string} ={
 }
 
 export function renderResultsScreen() {
-    let resultScreen = `
+    const resultScreen = `
     <div class="cards__final">
         <img src="style/img/win-screen.png" alt="winscreen img" class="cards__final-image">
         <h2 class="cards__final-title"></h2>
@@ -184,7 +185,7 @@ export function renderResultsScreen() {
         <button class="cards__final-btn btn">Играть снова</button>
     </div>
     `
-    let template = Handlebars.compile(resultScreen)
-    let result = template('')
+    const template = Handlebars.compile(resultScreen)
+    const result = template('')
     document.querySelector('.cards')!.innerHTML += result
 }
