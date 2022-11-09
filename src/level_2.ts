@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { startTimer, pauseTimer, resetTimer } from './lib/stopwatch'
 import {
     renderStartScreen,
@@ -8,24 +9,24 @@ import {
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function secondLevel() {
-    let target:number = 0
-    let clicks:number = 0 
-    let randomsCardRang: number[] = []
-    let randomsCardSuit: number[] = []
+    let target = 0
+    let clicks = 0 
+    const randomsCardRang: number[] = []
+    const randomsCardSuit: number[] = []
     const cardsFormBtn = document.querySelector('.cards__form-btn') as HTMLElement
     cardsFormBtn.addEventListener('click', (e) => {
         e.preventDefault()
         renderGameField()
 
-        const cardsGameField = document.querySelector('.cards__game-field') as HTMLElement
+        const cardsGameField = document.querySelector('.cards__game-field') as HTMLElement | undefined
 
-        let cardRangIdInSting:string = ''
-        let cardSuitIdInSting:string = ''
-        let secondCardSuitIdInSting:string = ''
+        let cardRangIdInSting = ''
+        let cardSuitIdInSting = ''
+        let secondCardSuitIdInSting = ''
 
         // генерация массива ранодомных рангов карт (от 6 до туза)
         while (randomsCardRang.length < 6) {
-            let random:number = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
+            const random:number = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
 
             if (randomsCardRang.indexOf(random) === -1) {
                 randomsCardRang.push(random)
@@ -34,7 +35,7 @@ export function secondLevel() {
 
         // генерация массива рандомных мастей карт
         while (randomsCardSuit.length < 7) {
-            let random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
+            const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
             randomsCardSuit.push(random)
         }
 
@@ -42,11 +43,11 @@ export function secondLevel() {
         console.log(randomsCardSuit)
 
         // в данные массивы будут записываться id пар карт, которые нужно найти
-        let firstTargetArr : string [] = []
-        let secondTargetArr : string [] = []
+        const firstTargetArr : string [] = []
+        const secondTargetArr : string [] = []
 
         // процесс показа рандомных карт:
-        for (let i:number = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
             cardRangIdInSting = String(randomsCardRang[i])
             cardSuitIdInSting = String(randomsCardSuit[i])
             secondCardSuitIdInSting = String(randomsCardSuit[i + 1])
@@ -54,46 +55,39 @@ export function secondLevel() {
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                )!
-                .classList.remove('defaultCard')
+                )?.classList.remove('defaultCard')
 
             document
                 .getElementById(
                     `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                )!
-                .classList.remove('defaultCard')
+                )?.classList.remove('defaultCard')
 
-            firstTargetArr![i] = document.getElementById(
+            firstTargetArr[i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-            )!.id
-            secondTargetArr![i] = document.getElementById(
+            )?.id ?? ''
+            secondTargetArr[i] = document.getElementById(
                 `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-            )!.id
+            )?.id ?? ''
 
-            console.log(
-                document.getElementById(
-                    `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                )!.id
-            )
+           
         }
 
-        console.log(firstTargetArr!)
-        console.log(secondTargetArr!)
+       
 
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
-            cardsGameField!.innerHTML = ''
+            cardsGameField!.innerHTML  = ''
 
-            let randoms:number [] = []
+            const randoms:number [] = []
             while (randoms.length < 36) {
-                let random = Math.ceil(1 + Math.floor(Math.random() * 36))
+                const random = Math.ceil(1 + Math.floor(Math.random() * 36))
                 if (randoms.indexOf(random) === -1) {
                     randoms.push(random)
                 }
             }
             console.log(randoms)
 
-            for (let i:number = 0; i < 36; i++) {
+            for (let i = 0; i < 36; i++) {
                 cardsGameField!.innerHTML += cardsObj[randoms[i]]
             }
         }
@@ -111,7 +105,7 @@ export function secondLevel() {
             })
 
             // сверим id карт, по которым кликнули, с id карт, которые нужно найти
-            for (let i:number = 0; i < cardItem.length; i++) {
+            for (let i = 0; i < cardItem.length; i++) {
                 cardItem[i].addEventListener('click', () => {
                     cardItem[i].classList.remove('defaultCard')
                     console.log(cardItem[i].id)
@@ -135,10 +129,10 @@ export function secondLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement 
                                 finalScrImg!.src = winScreen
@@ -162,10 +156,10 @@ export function secondLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement
                                 finalScrImg!.src = looseScreen

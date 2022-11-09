@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { startTimer, pauseTimer, resetTimer } from './lib/stopwatch'
 
 import {
@@ -9,8 +10,8 @@ import {
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function firstLevel() {
-    let clicks:number = 0
-    let target:number = 0
+    let clicks = 0
+    let target = 0
     const cardsFormBtn = document.querySelector('.cards__form-btn') as HTMLElement 
     cardsFormBtn.addEventListener('click', (e) => {
         e.preventDefault()
@@ -18,16 +19,16 @@ export function firstLevel() {
 
         const cardsGameField = document.querySelector('.cards__game-field')
 
-        let cardRangIdInSting:string = ''
-        let cardSuitIdInSting:string = ''
-        let secondCardSuitIdInSting:string = ''
+        let cardRangIdInSting = ''
+        let cardSuitIdInSting = ''
+        let secondCardSuitIdInSting = ''
 
         // генерация массива ранодомных рангов карт (от 6 до туза)
-        let randomsCardRang:number[] = []
+        const randomsCardRang:number[] = []
 
         if(randomsCardRang !==undefined){
             while (randomsCardRang.length < 3) {
-                let random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
+                const random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
     
                 if (randomsCardRang.indexOf(random) === -1) {
                     randomsCardRang.push(random)
@@ -37,22 +38,23 @@ export function firstLevel() {
       
 
         // генерация массива рандомных мастей карт
-        let randomsCardSuit:number [] = []
+        const randomsCardSuit:number [] = []
         while (randomsCardSuit.length < 4) {
-            let random = Math.ceil(1 + Math.floor(Math.random() * 4))
-            if (randomsCardSuit!.indexOf(random) === -1) {
-                randomsCardSuit!.push(random)
+            const random = Math.ceil(1 + Math.floor(Math.random() * 4))
+            if (randomsCardSuit?.indexOf(random) === -1) {
+                randomsCardSuit?.push(random)
             }
         }
 
         // в данные массивы будут записываться id пар карт, которые нужно найти
-        let firstTargetArr : string[] = []
-        let secondTargetArr : string[] =[]
+        const firstTargetArr : string[] | undefined = []
+        const secondTargetArr : string[] | undefined = []
 
         // процесс показа рандомных карт:
         if(randomsCardRang){
             for (let i = 0; i < 3; i++) {
                 cardRangIdInSting = String(randomsCardRang[i])
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 if (randomsCardSuit!) {
                     cardSuitIdInSting = String(randomsCardSuit[i])
                     secondCardSuitIdInSting = String(randomsCardSuit[i + 1])
@@ -60,23 +62,21 @@ export function firstLevel() {
                 document
                     .getElementById(
                         `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
-                    )!
-                    .classList.remove('defaultCard')
+                    )?.classList.remove('defaultCard')
     
                 document
                     .getElementById(
                         `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
-                    )!
-                    .classList.remove('defaultCard')
+                    )?.classList.remove('defaultCard')
                 
-                if (firstTargetArr && secondTargetArr) {
+                
                     firstTargetArr[i] = document.getElementById(
                         `${cardRangIdInSting}` + `-` + `${cardSuitIdInSting}`
                     )!.id
                     secondTargetArr[i] = document.getElementById(
                         `${cardRangIdInSting}` + `-` + `${secondCardSuitIdInSting}`
                     )!.id
-                }
+                
                
             }
         }
@@ -87,11 +87,12 @@ export function firstLevel() {
 
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             cardsGameField!.innerHTML = ''
 
-            let randoms: number[] =[]
+            const randoms: number[] =[]
             while (randoms.length < 36) {
-                let random:number = Math.ceil(1 + Math.floor(Math.random() * 36))
+                const random:number = Math.ceil(1 + Math.floor(Math.random() * 36))
                 if (randoms.indexOf(random) === -1) {
                     randoms.push(random)
                 }
@@ -99,7 +100,7 @@ export function firstLevel() {
             console.log(randoms!)
 
             if (randoms !== undefined) {
-                for (let i:number = 0; i < 36; i++) {
+                for (let i = 0; i < 36; i++) {
                     cardsGameField!.innerHTML += cardsObj[randoms[i]]
                 }
             }
@@ -144,10 +145,10 @@ export function firstLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement | null
                                 finalScrImg!.src = winScreen
@@ -171,10 +172,10 @@ export function firstLevel() {
                             pauseTimer()
                             setTimeout(() => {
                                 renderResultsScreen()
-                                let finalTitle = document.querySelector(
+                                const finalTitle = document.querySelector(
                                     '.cards__final-title'
                                 )
-                                let finalScrImg = document.querySelector(
+                                const finalScrImg = document.querySelector(
                                     '.cards__final-image'
                                 ) as HTMLImageElement | null
                                 finalScrImg!.src = looseScreen

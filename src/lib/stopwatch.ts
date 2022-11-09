@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars */
-let startTimerButton = document.querySelector('.startTimer')
-let pauseTimerButton = document.querySelector('.pauseTimer')
-let timerDisplay = document.querySelector('.cards__game-timer')
+
 let startTime:number, updatedTime, difference:number, tInterval: number, savedTime:number
-let paused:number = 0
-let running:number = 0
+let paused = 0
+let running = 0
 
 export function startTimer() {
     if (!running) {
@@ -48,20 +45,12 @@ export function getShowTime() {
     } else {
         difference = updatedTime - startTime
     }
-    let hours:number | string = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    )
     let minutes:number | string = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
     let seconds:number | string = Math.floor((difference % (1000 * 60)) / 1000)
-    let milliseconds:number | string = Math.floor((difference % (1000 * 60)) / 100)
-    hours = hours < 10 ? '0' + hours : hours
+    
     minutes = minutes < 10 ? '0' + minutes : minutes
     seconds = seconds < 10 ? '0' + seconds : seconds
-    milliseconds =
-        milliseconds < 100
-            ? milliseconds < 10
-                ? '00' + milliseconds
-                : '0' + milliseconds
-            : milliseconds
+    
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('.timer')!.innerHTML = minutes + ':' + seconds
 }

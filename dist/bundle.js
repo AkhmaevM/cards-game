@@ -417,6 +417,7 @@ function thirdLevel() {
         var cardRangIdInSting = '';
         var cardSuitIdInSting = '';
         var secondCardSuitIdInSting = '';
+        // генерация массива рангов
         var myArray;
         myArray = [6, 7, 8, 9, 10, 11, 12, 13, 14];
         randomsCardRang = shuffle(myArray);
