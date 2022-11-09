@@ -67,6 +67,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
 /* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
 /* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 
 
@@ -76,6 +77,7 @@ function firstLevel() {
     var target = 0;
     var cardsFormBtn = document.querySelector('.cards__form-btn');
     cardsFormBtn.addEventListener('click', function (e) {
+        var _a, _b;
         e.preventDefault();
         (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
         var cardsGameField = document.querySelector('.cards__game-field');
@@ -96,8 +98,8 @@ function firstLevel() {
         var randomsCardSuit = [];
         while (randomsCardSuit.length < 4) {
             var random = Math.ceil(1 + Math.floor(Math.random() * 4));
-            if (randomsCardSuit.indexOf(random) === -1) {
-                randomsCardSuit.push(random);
+            if ((randomsCardSuit === null || randomsCardSuit === void 0 ? void 0 : randomsCardSuit.indexOf(random)) === -1) {
+                randomsCardSuit === null || randomsCardSuit === void 0 ? void 0 : randomsCardSuit.push(random);
             }
         }
         // в данные массивы будут записываться id пар карт, которые нужно найти
@@ -107,24 +109,22 @@ function firstLevel() {
         if (randomsCardRang) {
             for (var i = 0; i < 3; i++) {
                 cardRangIdInSting = String(randomsCardRang[i]);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 if (randomsCardSuit) {
                     cardSuitIdInSting = String(randomsCardSuit[i]);
                     secondCardSuitIdInSting = String(randomsCardSuit[i + 1]);
                 }
-                document
-                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))
-                    .classList.remove('defaultCard');
-                document
-                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))
-                    .classList.remove('defaultCard');
-                if (firstTargetArr && secondTargetArr) {
-                    firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
-                    secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
-                }
+                (_a = document
+                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
+                (_b = document
+                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
+                firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
+                secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
             }
         }
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             cardsGameField.innerHTML = '';
             var randoms = [];
             while (randoms.length < 36) {
@@ -238,6 +238,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
 /* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
 /* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 
 
@@ -249,6 +250,7 @@ function secondLevel() {
     var randomsCardSuit = [];
     var cardsFormBtn = document.querySelector('.cards__form-btn');
     cardsFormBtn.addEventListener('click', function (e) {
+        var _a, _b, _c, _d, _e, _f;
         e.preventDefault();
         (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
         var cardsGameField = document.querySelector('.cards__game-field');
@@ -277,18 +279,13 @@ function secondLevel() {
             cardRangIdInSting = String(randomsCardRang[i]);
             cardSuitIdInSting = String(randomsCardSuit[i]);
             secondCardSuitIdInSting = String(randomsCardSuit[i + 1]);
-            document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))
-                .classList.remove('defaultCard');
-            document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))
-                .classList.remove('defaultCard');
-            firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
-            secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
-            console.log(document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id);
+            (_a = document
+                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
+            (_b = document
+                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
+            firstTargetArr[i] = (_d = (_c = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _c === void 0 ? void 0 : _c.id) !== null && _d !== void 0 ? _d : '';
+            secondTargetArr[i] = (_f = (_e = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _e === void 0 ? void 0 : _e.id) !== null && _f !== void 0 ? _f : '';
         }
-        console.log(firstTargetArr);
-        console.log(secondTargetArr);
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
             cardsGameField.innerHTML = '';
@@ -400,6 +397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
 /* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
 /* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 
 
@@ -411,6 +409,7 @@ function thirdLevel() {
     var randomsCardSuit;
     var cardsFormBtn = document.querySelector('.cards__form-btn');
     cardsFormBtn.addEventListener('click', function (e) {
+        var _a, _b;
         e.preventDefault();
         (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
         var cardsGameField = document.querySelector('.cards__game-field');
@@ -418,8 +417,8 @@ function thirdLevel() {
         var cardSuitIdInSting = '';
         var secondCardSuitIdInSting = '';
         // генерация массива рангов
-        var myArray;
-        myArray = [6, 7, 8, 9, 10, 11, 12, 13, 14];
+        var myArray = [6, 7, 8, 9, 10, 11, 12, 13, 14];
+        // myArray = [6,7,8,9,10,11,12,13,14]
         randomsCardRang = shuffle(myArray);
         function shuffle(o) {
             for (var j = void 0, x = void 0, i = o.length; i; j = Math.floor(Math.random() * i),
@@ -450,12 +449,10 @@ function thirdLevel() {
                 secondSuitIndex += 1;
                 cardSuitIdInSting = String(secondSuitIndex);
             }
-            document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))
-                .classList.remove('defaultCard');
-            document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))
-                .classList.remove('defaultCard');
+            (_a = document
+                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
+            (_b = document
+                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
             firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
             secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
             console.log(document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id);
@@ -573,10 +570,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "resetTimer": () => (/* binding */ resetTimer),
 /* harmony export */   "startTimer": () => (/* binding */ startTimer)
 /* harmony export */ });
-/* eslint-disable no-unused-vars */
-var startTimerButton = document.querySelector('.startTimer');
-var pauseTimerButton = document.querySelector('.pauseTimer');
-var timerDisplay = document.querySelector('.cards__game-timer');
 var startTime, updatedTime, difference, tInterval, savedTime;
 var paused = 0;
 var running = 0;
@@ -621,19 +614,11 @@ function getShowTime() {
     else {
         difference = updatedTime - startTime;
     }
-    var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
-    var milliseconds = Math.floor((difference % (1000 * 60)) / 100);
-    hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    milliseconds =
-        milliseconds < 100
-            ? milliseconds < 10
-                ? '00' + milliseconds
-                : '0' + milliseconds
-            : milliseconds;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('.timer').innerHTML = minutes + ':' + seconds;
 }
 
@@ -659,6 +644,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var handlebars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/handlebars.min.js");
 /* harmony import */ var handlebars__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(handlebars__WEBPACK_IMPORTED_MODULE_0__);
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 var cards = document.querySelector('.cards');
 var cardsForm = document.querySelector('.cards__start');
 var cardsFormLevel = document.querySelectorAll('.cards__form-level');
