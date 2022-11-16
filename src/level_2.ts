@@ -25,19 +25,36 @@ export function secondLevel() {
         let secondCardSuitIdInSting = ''
 
         // генерация массива ранодомных рангов карт (от 6 до туза)
-        while (randomsCardRang.length < 6) {
+        while (randomsCardRang.length <6) {
             const random:number = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6)
 
             if (randomsCardRang.indexOf(random) === -1) {
                 randomsCardRang.push(random)
             }
+            // randomsCardRang.push(random)
         }
+        let random:number 
 
         // генерация массива рандомных мастей карт
-        while (randomsCardSuit.length < 7) {
-            const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
+        while (randomsCardSuit.length < 8) {
+            random  = Math.ceil(1 + Math.floor(Math.random() * 4))
             randomsCardSuit.push(random)
         }
+
+        for (let i = 1; i <= randomsCardSuit.length; i++) {
+           
+            if (randomsCardSuit[i]===randomsCardSuit[i-1]) {
+                if (randomsCardSuit[i]<=4 && randomsCardSuit[i]>=1 ) {
+                    randomsCardSuit[i] = randomsCardSuit[i-1] -1
+                }
+
+                if(randomsCardSuit[i]>=0)
+                randomsCardSuit[i] =randomsCardSuit[i-1]+ 1
+            }
+        }
+       
+       
+       
 
         console.log(randomsCardRang)
         console.log(randomsCardSuit)
@@ -47,7 +64,7 @@ export function secondLevel() {
         const secondTargetArr : string [] = []
 
         // процесс показа рандомных карт:
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
             cardRangIdInSting = String(randomsCardRang[i])
             cardSuitIdInSting = String(randomsCardSuit[i])
             secondCardSuitIdInSting = String(randomsCardSuit[i + 1])
@@ -122,6 +139,7 @@ export function secondLevel() {
                        ( cardItem[i] as HTMLElement).style.border = '2px solid red'
                     }
 
+                   
                     // проверка количества открытых карт
                     if (clicks === 12) {
                         // win screen
@@ -177,7 +195,12 @@ export function secondLevel() {
                                     })
                             }, 2000)
                         }
+
+
                     }
+
+                    
+                    
                 })
             }
 

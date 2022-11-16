@@ -80,7 +80,9 @@ export function firstLevel() {
                
             }
         }
-      
+        
+        console.log(firstTargetArr);
+        console.log(secondTargetArr);
 
        
         
@@ -137,7 +139,7 @@ export function firstLevel() {
                         (cardItem[i] as HTMLElement).style.border = '2px solid red'
                     }
                   }
-
+                 
                     // проверка количества открытых карт
                     if (clicks === 6) {
                         // win screen
@@ -194,6 +196,8 @@ export function firstLevel() {
                             }, 2000)
                         }
                     }
+
+                    
                 })
             }
 

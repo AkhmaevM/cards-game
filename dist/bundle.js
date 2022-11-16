@@ -122,6 +122,8 @@ function firstLevel() {
                 secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
             }
         }
+        console.log(firstTargetArr);
+        console.log(secondTargetArr);
         // функция перемешивания карт на игровом поле
         function randomizeCardsPosition() {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -209,6 +211,25 @@ function firstLevel() {
                             }, 2000);
                         }
                     }
+                    if (!firstTargetArr.includes(cardItem[i].id) || !secondTargetArr.includes(cardItem[i].id)) {
+                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
+                        setTimeout(function () {
+                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
+                            var finalTitle = document.querySelector('.cards__final-title');
+                            var finalScrImg = document.querySelector('.cards__final-image');
+                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
+                            finalTitle.textContent = 'Вы проиграли!';
+                            var gameField = document.querySelector('.cards__game');
+                            gameField.style.opacity = '0.7';
+                            document
+                                .querySelector('.cards__final-btn')
+                                .addEventListener('click', function (e) {
+                                e.preventDefault();
+                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
+                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
+                            });
+                        }, 2000);
+                    }
                 });
             };
             // сверим id карт, по которым кликнули, с id карт, которые нужно найти
@@ -259,23 +280,54 @@ function secondLevel() {
         var secondCardSuitIdInSting = '';
         // генерация массива ранодомных рангов карт (от 6 до туза)
         while (randomsCardRang.length < 6) {
-            var random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6);
-            if (randomsCardRang.indexOf(random) === -1) {
-                randomsCardRang.push(random);
+            var random_1 = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6);
+            if (randomsCardRang.indexOf(random_1) === -1) {
+                randomsCardRang.push(random_1);
             }
+            // randomsCardRang.push(random)
         }
+        var random;
         // генерация массива рандомных мастей карт
-        while (randomsCardSuit.length < 7) {
-            var random = Math.ceil(1 + Math.floor(Math.random() * 4));
+        while (randomsCardSuit.length < 8) {
+            random = Math.ceil(1 + Math.floor(Math.random() * 4));
             randomsCardSuit.push(random);
         }
+        for (var i = 1; i <= randomsCardSuit.length; i++) {
+            if (randomsCardSuit[i] === randomsCardSuit[i - 1]) {
+                if (randomsCardSuit[i] <= 4 && randomsCardSuit[i] >= 1) {
+                    randomsCardSuit[i] = randomsCardSuit[i - 1] - 1;
+                }
+                if (randomsCardSuit[i] >= 0)
+                    randomsCardSuit[i] = randomsCardSuit[i - 1] + 1;
+            }
+        }
+        // for (let i = 0; randomsCardRang.length < 8; i++) {
+        //     const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
+        //     randomsCardRang.push(random)
+        //     if (i>1) {
+        //         if(randomsCardSuit[i] === randomsCardSuit[i-1]){
+        //             console.log('number is already exist');
+        //             continue
+        //         }
+        //     }
+        // }
+        //    while(randomsCardSuit.length < 7){
+        //     const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
+        //     if (randomsCardRang.indexOf(random) === -1) {
+        //         randomsCardRang.push(random)
+        //     }
+        //     // randomsCardSuit.push(number())
+        //     // if(randomsCardSuit.indexOf === randomsCardSuit[i-1]){
+        //     //     number()
+        //     // }
+        //    }
         console.log(randomsCardRang);
         console.log(randomsCardSuit);
         // в данные массивы будут записываться id пар карт, которые нужно найти
         var firstTargetArr = [];
         var secondTargetArr = [];
         // процесс показа рандомных карт:
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 7; i++) {
             cardRangIdInSting = String(randomsCardRang[i]);
             cardSuitIdInSting = String(randomsCardSuit[i]);
             secondCardSuitIdInSting = String(randomsCardSuit[i + 1]);
@@ -291,9 +343,9 @@ function secondLevel() {
             cardsGameField.innerHTML = '';
             var randoms = [];
             while (randoms.length < 36) {
-                var random = Math.ceil(1 + Math.floor(Math.random() * 36));
-                if (randoms.indexOf(random) === -1) {
-                    randoms.push(random);
+                var random_2 = Math.ceil(1 + Math.floor(Math.random() * 36));
+                if (randoms.indexOf(random_2) === -1) {
+                    randoms.push(random_2);
                 }
             }
             console.log(randoms);
@@ -367,6 +419,25 @@ function secondLevel() {
                                 });
                             }, 2000);
                         }
+                    }
+                    if (!firstTargetArr.includes(cardItem[i].id) && !secondTargetArr.includes(cardItem[i - 1].id)) {
+                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
+                        setTimeout(function () {
+                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
+                            var finalTitle = document.querySelector('.cards__final-title');
+                            var finalScrImg = document.querySelector('.cards__final-image');
+                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
+                            finalTitle.textContent = 'Вы проиграли!';
+                            var gameField = document.querySelector('.cards__game');
+                            gameField.style.opacity = '0.7';
+                            document
+                                .querySelector('.cards__final-btn')
+                                .addEventListener('click', function (e) {
+                                e.preventDefault();
+                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
+                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
+                            });
+                        }, 2000);
                     }
                 });
             };
@@ -522,25 +593,50 @@ function thirdLevel() {
                             }, 2000);
                         }
                         // loose screen
-                        if (target < 18) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                                finalTitle.textContent = 'Вы проиграли!';
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
+                        // if (target < 18) {
+                        //     pauseTimer()
+                        //     setTimeout(() => {
+                        //         renderResultsScreen()
+                        //         const finalTitle = document.querySelector(
+                        //             '.cards__final-title'
+                        //         )
+                        //         const finalScrImg = document.querySelector(
+                        //             '.cards__final-image'
+                        //         ) as HTMLImageElement
+                        //         finalScrImg!.src = looseScreen
+                        //         finalTitle!.textContent = 'Вы проиграли!'
+                        //         const gameField = document.querySelector(
+                        //             '.cards__game'
+                        //         ) as HTMLElement
+                        //         gameField!.style.opacity = '0.7'
+                        //         document
+                        //             .querySelector('.cards__final-btn')!
+                        //             .addEventListener('click', (e) => {
+                        //                 e.preventDefault()
+                        //                 renderStartScreen()
+                        //                 resetTimer()
+                        //             })
+                        //     }, 2000)
+                        // }
+                    }
+                    if (!firstTargetArr.includes(cardItem[i].id) && !secondTargetArr.includes(cardItem[i - 1].id)) {
+                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
+                        setTimeout(function () {
+                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
+                            var finalTitle = document.querySelector('.cards__final-title');
+                            var finalScrImg = document.querySelector('.cards__final-image');
+                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
+                            finalTitle.textContent = 'Вы проиграли!';
+                            var gameField = document.querySelector('.cards__game');
+                            gameField.style.opacity = '0.7';
+                            document
+                                .querySelector('.cards__final-btn')
+                                .addEventListener('click', function (e) {
+                                e.preventDefault();
+                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
+                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
+                            });
+                        }, 2000);
                     }
                 });
             };
