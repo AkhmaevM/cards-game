@@ -52,600 +52,79 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/level_1.ts":
-/*!************************!*\
-  !*** ./src/level_1.ts ***!
-  \************************/
+/***/ "./src/level-handler.ts":
+/*!******************************!*\
+  !*** ./src/level-handler.ts ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "firstLevel": () => (/* binding */ firstLevel)
+/* harmony export */   "renderLevel": () => (/* binding */ renderLevel)
 /* harmony export */ });
-/* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
-/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
-/* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
-/* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
+/* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
 
 
 
-
-function firstLevel() {
-    var clicks = 0;
-    var target = 0;
-    var cardsFormBtn = document.querySelector('.cards__form-btn');
-    cardsFormBtn.addEventListener('click', function (e) {
-        var _a, _b;
-        e.preventDefault();
-        (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
-        var cardsGameField = document.querySelector('.cards__game-field');
-        var cardRangIdInSting = '';
-        var cardSuitIdInSting = '';
-        var secondCardSuitIdInSting = '';
-        // генерация массива ранодомных рангов карт (от 6 до туза)
-        var randomsCardRang = [];
-        if (randomsCardRang !== undefined) {
-            while (randomsCardRang.length < 3) {
-                var random = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6);
-                if (randomsCardRang.indexOf(random) === -1) {
-                    randomsCardRang.push(random);
-                }
-            }
+// наши карты это картинки с именами от 0 до 35 в формате png
+// для каждого уровня сложности нужно сгенерировать либо фиксированное количество случайных пар
+// для первого уровня 3 пары - 6 карт
+// для первого уровня 6 пар  - 16 карт
+// для первого уровня 9 пар -  18 карт
+// алгоритм для генерации пар может быть такой
+// 1. генерируем массив случайных чисел от 1 до 36, так как у нас уже классы, которые устанавливают фон item-1 ... item-36
+// 2. в зависимости от уровня сложности это будет массив длиной 3, 6 или 9 элементов
+// 3. сгенерированный массив соответствует случайным картам, теперь чтобы сделать их "парными" можно просто сделать копию этого массива и склеить два массива в 1. Таким образом мы получим новый массив из 6, 12 или 18 карт
+// 4. теперь можно "размешать" этот массив и получим абсолютно случайны порядок карт
+function renderLevel(level) {
+    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderGameField)();
+    setTimeout(function () {
+        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.startTimer)();
+    }, 5000);
+    var restartBtn = document.querySelector('.cards__game-btn');
+    restartBtn === null || restartBtn === void 0 ? void 0 : restartBtn.addEventListener('click', function () {
+        if (_renderScreens__WEBPACK_IMPORTED_MODULE_0__.cards) {
+            _renderScreens__WEBPACK_IMPORTED_MODULE_0__.cards.innerHTML = '';
         }
-        // генерация массива рандомных мастей карт
-        var randomsCardSuit = [];
-        while (randomsCardSuit.length < 4) {
-            var random = Math.ceil(1 + Math.floor(Math.random() * 4));
-            if ((randomsCardSuit === null || randomsCardSuit === void 0 ? void 0 : randomsCardSuit.indexOf(random)) === -1) {
-                randomsCardSuit === null || randomsCardSuit === void 0 ? void 0 : randomsCardSuit.push(random);
-            }
-        }
-        // в данные массивы будут записываться id пар карт, которые нужно найти
-        var firstTargetArr = [];
-        var secondTargetArr = [];
-        // процесс показа рандомных карт:
-        if (randomsCardRang) {
-            for (var i = 0; i < 3; i++) {
-                cardRangIdInSting = String(randomsCardRang[i]);
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                if (randomsCardSuit) {
-                    cardSuitIdInSting = String(randomsCardSuit[i]);
-                    secondCardSuitIdInSting = String(randomsCardSuit[i + 1]);
-                }
-                (_a = document
-                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
-                (_b = document
-                    .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
-                firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
-                secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
-            }
-        }
-        console.log(firstTargetArr);
-        console.log(secondTargetArr);
-        // функция перемешивания карт на игровом поле
-        function randomizeCardsPosition() {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            cardsGameField.innerHTML = '';
-            var randoms = [];
-            while (randoms.length < 36) {
-                var random = Math.ceil(1 + Math.floor(Math.random() * 36));
-                if (randoms.indexOf(random) === -1) {
-                    randoms.push(random);
-                }
-            }
-            console.log(randoms);
-            if (randoms !== undefined) {
-                for (var i = 0; i < 36; i++) {
-                    cardsGameField.innerHTML += _renderScreens__WEBPACK_IMPORTED_MODULE_1__.cardsObj[randoms[i]];
-                }
-            }
-        }
-        // скрытие карт, старт таймера и начало игры
-        setTimeout(function () {
-            randomizeCardsPosition();
-            var cardItem = document.querySelectorAll('.cards__game-item');
-            // кнопка рестарта
-            var cardsGameBtn = document.querySelector('.cards__game-btn');
-            cardsGameBtn === null || cardsGameBtn === void 0 ? void 0 : cardsGameBtn.addEventListener('click', function () {
-                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-            });
-            var _loop_1 = function (i) {
-                cardItem[i].addEventListener('click', function () {
-                    cardItem[i].classList.remove('defaultCard');
-                    console.log(cardItem[i].id);
-                    clicks++;
-                    // если игрок угадал загаданную карту, добавляется 1 балл
-                    if (firstTargetArr && secondTargetArr) {
-                        if (firstTargetArr.includes(cardItem[i].id) ||
-                            secondTargetArr.includes(cardItem[i].id)) {
-                            target++;
-                            cardItem[i].style.border = '2px solid green';
-                        }
-                        else {
-                            cardItem[i].style.border = '2px solid red';
-                        }
-                    }
-                    // проверка количества открытых карт
-                    if (clicks === 6) {
-                        // win screen
-                        if (target === 6) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__;
-                                finalTitle.textContent = 'Вы выиграли!';
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
-                        // loose screen
-                        if (target < 6) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                                finalTitle.textContent = 'Вы проиграли!';
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
-                    }
-                    if (!firstTargetArr.includes(cardItem[i].id) || !secondTargetArr.includes(cardItem[i].id)) {
-                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                        setTimeout(function () {
-                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                            var finalTitle = document.querySelector('.cards__final-title');
-                            var finalScrImg = document.querySelector('.cards__final-image');
-                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                            finalTitle.textContent = 'Вы проиграли!';
-                            var gameField = document.querySelector('.cards__game');
-                            gameField.style.opacity = '0.7';
-                            document
-                                .querySelector('.cards__final-btn')
-                                .addEventListener('click', function (e) {
-                                e.preventDefault();
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                            });
-                        }, 2000);
-                    }
-                });
-            };
-            // сверим id карт, по которым кликнули, с id карт, которые нужно найти
-            for (var i = 0; i < cardItem.length; i++) {
-                _loop_1(i);
-            }
-            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.startTimer)();
-        }, 5000);
+        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.resetTimer)();
+        (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
     });
-}
-
-
-/***/ }),
-
-/***/ "./src/level_2.ts":
-/*!************************!*\
-  !*** ./src/level_2.ts ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "secondLevel": () => (/* binding */ secondLevel)
-/* harmony export */ });
-/* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
-/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
-/* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
-/* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-
-
-
-function secondLevel() {
-    var target = 0;
-    var clicks = 0;
-    var randomsCardRang = [];
-    var randomsCardSuit = [];
-    var cardsFormBtn = document.querySelector('.cards__form-btn');
-    cardsFormBtn.addEventListener('click', function (e) {
-        var _a, _b, _c, _d, _e, _f;
-        e.preventDefault();
-        (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
-        var cardsGameField = document.querySelector('.cards__game-field');
-        var cardRangIdInSting = '';
-        var cardSuitIdInSting = '';
-        var secondCardSuitIdInSting = '';
-        // генерация массива ранодомных рангов карт (от 6 до туза)
-        while (randomsCardRang.length < 6) {
-            var random_1 = Math.ceil(1 + Math.floor(Math.random() * (14 - 6)) + 6);
-            if (randomsCardRang.indexOf(random_1) === -1) {
-                randomsCardRang.push(random_1);
-            }
-            // randomsCardRang.push(random)
-        }
-        var random;
-        // генерация массива рандомных мастей карт
-        while (randomsCardSuit.length < 8) {
-            random = Math.ceil(1 + Math.floor(Math.random() * 4));
-            randomsCardSuit.push(random);
-        }
-        for (var i = 1; i <= randomsCardSuit.length; i++) {
-            if (randomsCardSuit[i] === randomsCardSuit[i - 1]) {
-                if (randomsCardSuit[i] <= 4 && randomsCardSuit[i] >= 1) {
-                    randomsCardSuit[i] = randomsCardSuit[i - 1] - 1;
-                }
-                if (randomsCardSuit[i] >= 0)
-                    randomsCardSuit[i] = randomsCardSuit[i - 1] + 1;
+    var arr = [];
+    // собираем массив случайных НЕПОВТОРЯЮЩИХСЯ карт
+    for (var i = 0; i < level; i++) {
+        // запустим бесконечный цикл
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            // сгенерировали случайное число
+            var randomCard = Math.ceil(Math.random() * 35);
+            // если такого числа нет в нашем массиве arr
+            if (!arr.includes(randomCard)) {
+                // тогда добавим его
+                arr.push(randomCard);
+                // и остановим внутренний цикл while
+                break;
             }
         }
-        // for (let i = 0; randomsCardRang.length < 8; i++) {
-        //     const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
-        //     randomsCardRang.push(random)
-        //     if (i>1) {
-        //         if(randomsCardSuit[i] === randomsCardSuit[i-1]){
-        //             console.log('number is already exist');
-        //             continue
-        //         }
-        //     }
-        // }
-        //    while(randomsCardSuit.length < 7){
-        //     const random:number  = Math.ceil(1 + Math.floor(Math.random() * 4))
-        //     if (randomsCardRang.indexOf(random) === -1) {
-        //         randomsCardRang.push(random)
-        //     }
-        //     // randomsCardSuit.push(number())
-        //     // if(randomsCardSuit.indexOf === randomsCardSuit[i-1]){
-        //     //     number()
-        //     // }
-        //    }
-        console.log(randomsCardRang);
-        console.log(randomsCardSuit);
-        // в данные массивы будут записываться id пар карт, которые нужно найти
-        var firstTargetArr = [];
-        var secondTargetArr = [];
-        // процесс показа рандомных карт:
-        for (var i = 0; i < 7; i++) {
-            cardRangIdInSting = String(randomsCardRang[i]);
-            cardSuitIdInSting = String(randomsCardSuit[i]);
-            secondCardSuitIdInSting = String(randomsCardSuit[i + 1]);
-            (_a = document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
-            (_b = document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
-            firstTargetArr[i] = (_d = (_c = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _c === void 0 ? void 0 : _c.id) !== null && _d !== void 0 ? _d : '';
-            secondTargetArr[i] = (_f = (_e = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _e === void 0 ? void 0 : _e.id) !== null && _f !== void 0 ? _f : '';
-        }
-        // функция перемешивания карт на игровом поле
-        function randomizeCardsPosition() {
-            cardsGameField.innerHTML = '';
-            var randoms = [];
-            while (randoms.length < 36) {
-                var random_2 = Math.ceil(1 + Math.floor(Math.random() * 36));
-                if (randoms.indexOf(random_2) === -1) {
-                    randoms.push(random_2);
-                }
-            }
-            console.log(randoms);
-            for (var i = 0; i < 36; i++) {
-                cardsGameField.innerHTML += _renderScreens__WEBPACK_IMPORTED_MODULE_1__.cardsObj[randoms[i]];
-            }
-        }
-        // скрытие карт, старт таймера и начало игры
-        setTimeout(function () {
-            randomizeCardsPosition();
-            var cardItem = document.querySelectorAll('.cards__game-item');
-            // кнопка рестарта
-            var cardsGameBtn = document.querySelector('.cards__game-btn');
-            cardsGameBtn.addEventListener('click', function () {
-                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-            });
-            var _loop_1 = function (i) {
-                cardItem[i].addEventListener('click', function () {
-                    cardItem[i].classList.remove('defaultCard');
-                    console.log(cardItem[i].id);
-                    clicks++;
-                    // если игрок угадал загаданную карту, добавляется 1 балл
-                    if (firstTargetArr.includes(cardItem[i].id) ||
-                        secondTargetArr.includes(cardItem[i].id)) {
-                        target++;
-                        cardItem[i].style.border = '2px solid green';
-                    }
-                    else {
-                        cardItem[i].style.border = '2px solid red';
-                    }
-                    // проверка количества открытых карт
-                    if (clicks === 12) {
-                        // win screen
-                        if (target === 12) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__;
-                                finalTitle.textContent = 'Вы выиграли!';
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
-                        // loose screen
-                        if (target < 12) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                                finalTitle.textContent = 'Вы проиграли!';
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
-                    }
-                    if (!firstTargetArr.includes(cardItem[i].id) && !secondTargetArr.includes(cardItem[i - 1].id)) {
-                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                        setTimeout(function () {
-                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                            var finalTitle = document.querySelector('.cards__final-title');
-                            var finalScrImg = document.querySelector('.cards__final-image');
-                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                            finalTitle.textContent = 'Вы проиграли!';
-                            var gameField = document.querySelector('.cards__game');
-                            gameField.style.opacity = '0.7';
-                            document
-                                .querySelector('.cards__final-btn')
-                                .addEventListener('click', function (e) {
-                                e.preventDefault();
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                            });
-                        }, 2000);
-                    }
-                });
-            };
-            // сверим id карт, по которым кликнули, с id карт, которые нужно найти
-            for (var i = 0; i < cardItem.length; i++) {
-                _loop_1(i);
-            }
-            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.startTimer)();
-        }, 5000);
-    });
-}
-
-
-/***/ }),
-
-/***/ "./src/level_3.ts":
-/*!************************!*\
-  !*** ./src/level_3.ts ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thirdLevel": () => (/* binding */ thirdLevel)
-/* harmony export */ });
-/* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
-/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
-/* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
-/* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-
-
-
-function thirdLevel() {
-    var clicks = 0;
-    var target = 0;
-    var randomsCardRang;
-    var randomsCardSuit;
-    var cardsFormBtn = document.querySelector('.cards__form-btn');
-    cardsFormBtn.addEventListener('click', function (e) {
-        var _a, _b;
-        e.preventDefault();
-        (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderGameField)();
-        var cardsGameField = document.querySelector('.cards__game-field');
-        var cardRangIdInSting = '';
-        var cardSuitIdInSting = '';
-        var secondCardSuitIdInSting = '';
-        // генерация массива рангов
-        var myArray = [6, 7, 8, 9, 10, 11, 12, 13, 14];
-        // myArray = [6,7,8,9,10,11,12,13,14]
-        randomsCardRang = shuffle(myArray);
-        function shuffle(o) {
-            for (var j = void 0, x = void 0, i = o.length; i; j = Math.floor(Math.random() * i),
-                x = o[--i],
-                o[i] = o[j],
-                o[j] = x)
-                ;
-            return o;
-        }
-        console.log(randomsCardRang);
-        console.log(randomsCardSuit);
-        // в данные массивы будут записываться id пар карт, которые нужно найти
-        var firstTargetArr = [];
-        var secondTargetArr = [];
-        // процесс показа рандомных карт:
-        for (var i = 0; i < 9; i++) {
-            var randomSuitIndex = Math.ceil(1 + Math.floor(Math.random() * 4));
-            var secondSuitIndex = Math.ceil(1 + Math.floor(Math.random() * 4));
-            cardRangIdInSting = String(randomsCardRang[i]);
-            cardSuitIdInSting = String(secondSuitIndex);
-            secondCardSuitIdInSting = String(randomSuitIndex);
-            if (randomSuitIndex === secondSuitIndex && randomSuitIndex === 4) {
-                secondSuitIndex -= 1;
-                cardSuitIdInSting = String(secondSuitIndex);
-            }
-            else if (randomSuitIndex === secondSuitIndex &&
-                randomSuitIndex < 4) {
-                secondSuitIndex += 1;
-                cardSuitIdInSting = String(secondSuitIndex);
-            }
-            (_a = document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting))) === null || _a === void 0 ? void 0 : _a.classList.remove('defaultCard');
-            (_b = document
-                .getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting))) === null || _b === void 0 ? void 0 : _b.classList.remove('defaultCard');
-            firstTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id;
-            secondTargetArr[i] = document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id;
-            console.log(document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(cardSuitIdInSting)).id);
-            console.log(document.getElementById("".concat(cardRangIdInSting) + "-" + "".concat(secondCardSuitIdInSting)).id);
-        }
-        console.log(firstTargetArr);
-        console.log(secondTargetArr);
-        // функция перемешивания карт на игровом поле
-        function randomizeCardsPosition() {
-            cardsGameField.innerHTML = '';
-            var randoms = [];
-            while (randoms.length < 36) {
-                var random = Math.ceil(1 + Math.floor(Math.random() * 36));
-                if (randoms.indexOf(random) === -1) {
-                    randoms.push(random);
-                }
-            }
-            console.log(randoms);
-            for (var i = 0; i < 36; i++) {
-                cardsGameField.innerHTML += _renderScreens__WEBPACK_IMPORTED_MODULE_1__.cardsObj[randoms[i]];
-            }
-        }
-        // скрытие карт, старт таймера и начало игры
-        setTimeout(function () {
-            randomizeCardsPosition();
-            var cardItem = document.querySelectorAll('.cards__game-item');
-            // кнопка рестарта
-            var cardsGameBtn = document.querySelector('.cards__game-btn');
-            cardsGameBtn.addEventListener('click', function () {
-                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-            });
-            var _loop_1 = function (i) {
-                cardItem[i].addEventListener('click', function () {
-                    cardItem[i].classList.remove('defaultCard');
-                    console.log(cardItem[i].id);
-                    clicks++;
-                    // если игрок угадал загаданную карту, добавляется 1 балл
-                    if (firstTargetArr.includes(cardItem[i].id) ||
-                        secondTargetArr.includes(cardItem[i].id)) {
-                        cardItem[i].style.border = '2px solid green';
-                        target++;
-                    }
-                    else {
-                        cardItem[i].style.border = '2px solid red';
-                    }
-                    // проверка количества открытых карт
-                    if (clicks === 18) {
-                        // win screen
-                        if (target === 18) {
-                            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                            setTimeout(function () {
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                                var finalTitle = document.querySelector('.cards__final-title');
-                                var finalScrImg = document.querySelector('.cards__final-image');
-                                finalScrImg.src = './style/img/win-screen.png';
-                                finalTitle.textContent = _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__;
-                                var gameField = document.querySelector('.cards__game');
-                                gameField.style.opacity = '0.7';
-                                document
-                                    .querySelector('.cards__final-btn')
-                                    .addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                    (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                                });
-                            }, 2000);
-                        }
-                        // loose screen
-                        // if (target < 18) {
-                        //     pauseTimer()
-                        //     setTimeout(() => {
-                        //         renderResultsScreen()
-                        //         const finalTitle = document.querySelector(
-                        //             '.cards__final-title'
-                        //         )
-                        //         const finalScrImg = document.querySelector(
-                        //             '.cards__final-image'
-                        //         ) as HTMLImageElement
-                        //         finalScrImg!.src = looseScreen
-                        //         finalTitle!.textContent = 'Вы проиграли!'
-                        //         const gameField = document.querySelector(
-                        //             '.cards__game'
-                        //         ) as HTMLElement
-                        //         gameField!.style.opacity = '0.7'
-                        //         document
-                        //             .querySelector('.cards__final-btn')!
-                        //             .addEventListener('click', (e) => {
-                        //                 e.preventDefault()
-                        //                 renderStartScreen()
-                        //                 resetTimer()
-                        //             })
-                        //     }, 2000)
-                        // }
-                    }
-                    if (!firstTargetArr.includes(cardItem[i].id) && !secondTargetArr.includes(cardItem[i - 1].id)) {
-                        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
-                        setTimeout(function () {
-                            (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
-                            var finalTitle = document.querySelector('.cards__final-title');
-                            var finalScrImg = document.querySelector('.cards__final-image');
-                            finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
-                            finalTitle.textContent = 'Вы проиграли!';
-                            var gameField = document.querySelector('.cards__game');
-                            gameField.style.opacity = '0.7';
-                            document
-                                .querySelector('.cards__final-btn')
-                                .addEventListener('click', function (e) {
-                                e.preventDefault();
-                                (0,_renderScreens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
-                                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
-                            });
-                        }, 2000);
-                    }
-                });
-            };
-            // сверим id карт, по которым кликнули, с id карт, которые нужно найти
-            for (var i = 0; i < cardItem.length; i++) {
-                _loop_1(i);
-            }
-            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.startTimer)();
-        }, 5000);
+    }
+    // копируем полученный массив и формируем "пары"
+    var cardSet = arr.concat(arr);
+    // теперь "перемешаем" полученный массив парных карт
+    cardSet = cardSet.sort(function () { return Math.random() - 0.5; });
+    console.log(cardSet);
+    // теперь на основе этого массива можно легко простроить список карт
+    // создаем контейнер куда будем класть div элементы с карточками
+    var gameField = document.querySelector('.cards__game');
+    var cardListDiv = document.createElement('div');
+    cardListDiv.classList.add('cards__game-list');
+    gameField === null || gameField === void 0 ? void 0 : gameField.appendChild(cardListDiv);
+    // теперь проходимся по массиву
+    cardSet.forEach(function (card) {
+        // используем элемент массива для генерации имени класса item-1 ... item-36
+        var cardItemDiv = document.createElement('div');
+        cardItemDiv.classList.add('card-img', "item-".concat(card), 'cards__game-item');
+        cardListDiv.appendChild(cardItemDiv);
     });
 }
 
@@ -749,13 +228,18 @@ function renderStartScreen() {
     var startScreen = "\n    <div class=\"cards__start\">\n    <form class=\"cards__form\">\n        <label for=\"level_choise\" class=\"cards__form-title\"\n            >\u0412\u044B\u0431\u0435\u0440\u0438 \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C</label\n        >\n\n        <div class=\"cards__form-levels\">\n            <input\n                type=\"radio\"\n                id=\"card__form-level-1\"\n                name=\"cards__form-option\"\n                value=\"easy\"\n                class=\"cards__form-level easy\"\n            />\n            <label\n                for=\"card__form-level-1\"\n                class=\"cards__form-levelHead\"\n                >1</label\n            >\n\n            <input\n                type=\"radio\"\n                id=\"card__form-level-2\"\n                name=\"cards__form-option\"\n                value=\"medium\"\n                class=\"cards__form-level medium\"\n            />\n            <label\n                for=\"card__form-level-2\"\n                class=\"cards__form-levelHead\"\n                >2</label\n            >\n\n            <input\n                type=\"radio\"\n                id=\"card__form-level-3\"\n                name=\"cards__form-option\"\n                value=\"hard\"\n                class=\"cards__form-level hard\"\n            />\n            <label\n                for=\"card__form-level-3\"\n                class=\"cards__form-levelHead\"\n                >3</label\n            >\n        </div>\n\n        <button class=\"cards__form-btn btn\">\u0421\u0442\u0430\u0440\u0442</button>\n    </form>\n    </div>\n    ";
     var template = handlebars__WEBPACK_IMPORTED_MODULE_0__.compile(startScreen);
     var result = template('');
-    cards.innerHTML = result;
+    if (cards) {
+        cards.innerHTML = result;
+    }
 }
 function renderGameField() {
-    var gameFieldScreen = "\n    <div class=\"cards__game\">\n    <div class=\"cards__game-header\">\n        <div class=\"cards__game-time\">\n            <div class=\"cards__game-wrapper\">\n                <p class=\"cards__game-min\">min</p>\n                <p class=\"cards__game-sek\">sek</p>\n            </div>\n            <div class=\"cards__game-timer timer\">00.00</div>\n        </div>\n\n        <div class=\"cards__game-btn btn\">\u041D\u0430\u0447\u0430\u0442\u044C \u0437\u0430\u043D\u043E\u0432\u043E</div>\n    </div>\n\n    <div class=\"cards__game-field\">\n        <div class=\"cards__game-item item-1  defaultCard\" id='14-1'></div>\n        <div class=\"cards__game-item item-2  defaultCard\" id='13-1'></div>\n        <div class=\"cards__game-item item-3  defaultCard\" id='12-1'></div>\n        <div class=\"cards__game-item item-4  defaultCard\" id='11-1'></div>\n        <div class=\"cards__game-item item-5  defaultCard\" id='10-1'></div>\n        <div class=\"cards__game-item item-6 defaultCard\"  id='9-1'></div>\n        <div class=\"cards__game-item item-7 defaultCard\"  id='8-1'></div>\n        <div class=\"cards__game-item item-8 defaultCard\"  id='7-1'></div>\n        <div class=\"cards__game-item item-9 defaultCard\"  id='6-1'></div>\n        <div class=\"cards__game-item item-10  defaultCard\" id='14-2'></div>\n        <div class=\"cards__game-item item-11  defaultCard\" id='13-2'></div>\n        <div class=\"cards__game-item item-12  defaultCard\" id='12-2'></div>\n        <div class=\"cards__game-item item-13  defaultCard\" id='11-2'></div>\n        <div class=\"cards__game-item item-14  defaultCard\" id='10-2'></div>\n        <div class=\"cards__game-item item-15 defaultCard\"  id='9-2'></div>\n        <div class=\"cards__game-item item-16 defaultCard\"  id='8-2'></div>\n        <div class=\"cards__game-item item-17 defaultCard\"  id='7-2'></div>\n        <div class=\"cards__game-item item-18 defaultCard\"  id='6-2'></div>\n        <div class=\"cards__game-item item-19  defaultCard\" id='14-3'></div>\n        <div class=\"cards__game-item item-20  defaultCard\" id='13-3'></div>\n        <div class=\"cards__game-item item-21  defaultCard\" id='12-3'></div>\n        <div class=\"cards__game-item item-22  defaultCard\" id='11-3'></div>\n        <div class=\"cards__game-item item-23  defaultCard\" id='10-3'></div>\n        <div class=\"cards__game-item item-24 defaultCard\"  id='9-3'></div>\n        <div class=\"cards__game-item item-25 defaultCard\"  id='8-3'></div>\n        <div class=\"cards__game-item item-26 defaultCard\"  id='7-3'></div>\n        <div class=\"cards__game-item item-27 defaultCard\"  id='6-3'></div>\n        <div class=\"cards__game-item item-28  defaultCard\" id='14-4'></div>\n        <div class=\"cards__game-item item-29  defaultCard\" id='13-4'></div>\n        <div class=\"cards__game-item item-30  defaultCard\" id='12-4'></div>\n        <div class=\"cards__game-item item-31  defaultCard\" id='11-4'></div>\n        <div class=\"cards__game-item item-32  defaultCard\" id='10-4'></div>\n        <div class=\"cards__game-item item-33 defaultCard\"  id='9-4'></div>\n        <div class=\"cards__game-item item-34 defaultCard\"  id='8-4'></div>\n        <div class=\"cards__game-item item-35 defaultCard\"  id='7-4'></div>\n        <div class=\"cards__game-item item-36 defaultCard\"  id='6-4'></div>\n    </div>\n</div>\n    ";
+    var gameFieldScreen = "\n    <div class=\"cards__game\">\n    <div class=\"cards__game-header\">\n        <div class=\"cards__game-time\">\n            <div class=\"cards__game-wrapper\">\n                <p class=\"cards__game-min\">min</p>\n                <p class=\"cards__game-sek\">sek</p>\n            </div>\n            <div class=\"cards__game-timer timer\">00.00</div>\n        </div>\n\n        <div class=\"cards__game-btn btn\">\u041D\u0430\u0447\u0430\u0442\u044C \u0437\u0430\u043D\u043E\u0432\u043E</div>\n    </div>\n\n    \n</div>\n    ";
     var template = handlebars__WEBPACK_IMPORTED_MODULE_0__.compile(gameFieldScreen);
     var result = template('');
-    cards.innerHTML = result;
+    if (cards) {
+        cards.innerHTML = '';
+        cards.innerHTML = result;
+    }
 }
 // обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
 // Ранг будет обозначен числами от 6 до 14
@@ -806,31 +290,11 @@ function renderResultsScreen() {
     var resultScreen = "\n    <div class=\"cards__final\">\n        <img src=\"style/img/win-screen.png\" alt=\"winscreen img\" class=\"cards__final-image\">\n        <h2 class=\"cards__final-title\"></h2>\n        <div class=\"cards__final-timer\">\n            <p class=\"cards__final-timer--text\">\u0417\u0430\u0442\u0440\u0430\u0447\u0435\u043D\u043D\u043E\u0435 \u0432\u0440\u0435\u043C\u044F</p>\n            <div class=\"cards__final-timer--numbers timer\">".concat(document.querySelector('.timer').innerHTML, "</div>\n        </div>\n        <button class=\"cards__final-btn btn\">\u0418\u0433\u0440\u0430\u0442\u044C \u0441\u043D\u043E\u0432\u0430</button>\n    </div>\n    ");
     var template = handlebars__WEBPACK_IMPORTED_MODULE_0__.compile(resultScreen);
     var result = template('');
-    document.querySelector('.cards').innerHTML += result;
+    if (cards) {
+        cards.innerHTML += result;
+    }
 }
 
-
-/***/ }),
-
-/***/ "./style/img/loose-screen.png":
-/*!************************************!*\
-  !*** ./style/img/loose-screen.png ***!
-  \************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "e3c6d13378fd14838171.png";
-
-/***/ }),
-
-/***/ "./style/img/win-screen.png":
-/*!**********************************!*\
-  !*** ./style/img/win-screen.png ***!
-  \**********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "e9a23012fa19ebafb807.png";
 
 /***/ })
 
@@ -885,18 +349,6 @@ module.exports = __webpack_require__.p + "e9a23012fa19ebafb807.png";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -913,26 +365,6 @@ module.exports = __webpack_require__.p + "e9a23012fa19ebafb807.png";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -943,29 +375,38 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
-/* harmony import */ var _level_1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level_1 */ "./src/level_1.ts");
-/* harmony import */ var _level_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./level_2 */ "./src/level_2.ts");
-/* harmony import */ var _level_3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./level_3 */ "./src/level_3.ts");
-/* harmony import */ var _style_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../style/style.css */ "./style/style.css");
+/* harmony import */ var _level_handler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level-handler */ "./src/level-handler.ts");
+/* harmony import */ var _style_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/style.css */ "./style/style.css");
 /* eslint-disable no-unused-vars */
 
-
-
+// import { firstLevel } from './level_1'
+// import { secondLevel } from './level_2'
+// import { thirdLevel } from './level_3'
 
 
 addEventListener('DOMContentLoaded', function () {
     (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
+    var cardsFormBtn = document.querySelector('.cards__form-btn');
     var easyLevel = document.querySelector('.easy');
     var mediumLevel = document.querySelector('.medium');
     var hardLevel = document.querySelector('.hard');
     easyLevel === null || easyLevel === void 0 ? void 0 : easyLevel.addEventListener('click', function () {
-        (0,_level_1__WEBPACK_IMPORTED_MODULE_1__.firstLevel)();
+        cardsFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            (0,_level_handler__WEBPACK_IMPORTED_MODULE_1__.renderLevel)(3);
+        });
     });
     mediumLevel === null || mediumLevel === void 0 ? void 0 : mediumLevel.addEventListener('click', function () {
-        (0,_level_2__WEBPACK_IMPORTED_MODULE_2__.secondLevel)();
+        cardsFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            (0,_level_handler__WEBPACK_IMPORTED_MODULE_1__.renderLevel)(6);
+        });
     });
     hardLevel === null || hardLevel === void 0 ? void 0 : hardLevel.addEventListener('click', function () {
-        (0,_level_3__WEBPACK_IMPORTED_MODULE_3__.thirdLevel)();
+        cardsFormBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            (0,_level_handler__WEBPACK_IMPORTED_MODULE_1__.renderLevel)(9);
+        });
     });
 });
 

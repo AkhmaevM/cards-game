@@ -61,7 +61,9 @@ export function renderStartScreen() {
 
     const template = Handlebars.compile(startScreen)
     const result = template('')
-    cards!.innerHTML = result
+    if (cards) {
+        cards.innerHTML = result
+    }
 }
 
 export function renderGameField() {
@@ -79,49 +81,15 @@ export function renderGameField() {
         <div class="cards__game-btn btn">Начать заново</div>
     </div>
 
-    <div class="cards__game-field">
-        <div class="cards__game-item item-1  defaultCard" id='14-1'></div>
-        <div class="cards__game-item item-2  defaultCard" id='13-1'></div>
-        <div class="cards__game-item item-3  defaultCard" id='12-1'></div>
-        <div class="cards__game-item item-4  defaultCard" id='11-1'></div>
-        <div class="cards__game-item item-5  defaultCard" id='10-1'></div>
-        <div class="cards__game-item item-6 defaultCard"  id='9-1'></div>
-        <div class="cards__game-item item-7 defaultCard"  id='8-1'></div>
-        <div class="cards__game-item item-8 defaultCard"  id='7-1'></div>
-        <div class="cards__game-item item-9 defaultCard"  id='6-1'></div>
-        <div class="cards__game-item item-10  defaultCard" id='14-2'></div>
-        <div class="cards__game-item item-11  defaultCard" id='13-2'></div>
-        <div class="cards__game-item item-12  defaultCard" id='12-2'></div>
-        <div class="cards__game-item item-13  defaultCard" id='11-2'></div>
-        <div class="cards__game-item item-14  defaultCard" id='10-2'></div>
-        <div class="cards__game-item item-15 defaultCard"  id='9-2'></div>
-        <div class="cards__game-item item-16 defaultCard"  id='8-2'></div>
-        <div class="cards__game-item item-17 defaultCard"  id='7-2'></div>
-        <div class="cards__game-item item-18 defaultCard"  id='6-2'></div>
-        <div class="cards__game-item item-19  defaultCard" id='14-3'></div>
-        <div class="cards__game-item item-20  defaultCard" id='13-3'></div>
-        <div class="cards__game-item item-21  defaultCard" id='12-3'></div>
-        <div class="cards__game-item item-22  defaultCard" id='11-3'></div>
-        <div class="cards__game-item item-23  defaultCard" id='10-3'></div>
-        <div class="cards__game-item item-24 defaultCard"  id='9-3'></div>
-        <div class="cards__game-item item-25 defaultCard"  id='8-3'></div>
-        <div class="cards__game-item item-26 defaultCard"  id='7-3'></div>
-        <div class="cards__game-item item-27 defaultCard"  id='6-3'></div>
-        <div class="cards__game-item item-28  defaultCard" id='14-4'></div>
-        <div class="cards__game-item item-29  defaultCard" id='13-4'></div>
-        <div class="cards__game-item item-30  defaultCard" id='12-4'></div>
-        <div class="cards__game-item item-31  defaultCard" id='11-4'></div>
-        <div class="cards__game-item item-32  defaultCard" id='10-4'></div>
-        <div class="cards__game-item item-33 defaultCard"  id='9-4'></div>
-        <div class="cards__game-item item-34 defaultCard"  id='8-4'></div>
-        <div class="cards__game-item item-35 defaultCard"  id='7-4'></div>
-        <div class="cards__game-item item-36 defaultCard"  id='6-4'></div>
-    </div>
+    
 </div>
     `
     const template = Handlebars.compile(gameFieldScreen)
     const result = template('')
-    cards!.innerHTML = result
+    if (cards) {
+        cards.innerHTML = ''
+        cards.innerHTML = result
+    }
 }
 
 // обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
@@ -187,5 +155,8 @@ export function renderResultsScreen() {
     `
     const template = Handlebars.compile(resultScreen)
     const result = template('')
-    document.querySelector('.cards')!.innerHTML += result
+    if (cards) {
+        cards.innerHTML  += result
+    }
+    
 }

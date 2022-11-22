@@ -1,11 +1,22 @@
 .cards {
+
+    
     &__game {
         width: 1034px;
         height: 700px;
         display: flex;
         flex-direction: column;
         row-gap: 35px;
-
+        
+        &-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-around;
+            width: 1034px;
+        }
+        
         &-header {
             display: flex;
             flex-direction: row;
@@ -49,14 +60,7 @@
             margin-top: 40px;
         }
     
-        &-field {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-around;
-            width: 1034px;
-        }
+        
     
         &-item {
             width: 95px;

@@ -1,5 +1,5 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 /* stylelint-disable selector-class-pattern */
-
 .cards__start {
     border-radius: 12px;
     width: 480px;
@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    column-gap: 24px;
     column-gap: 24px;
     padding-bottom: 67px;
 }
@@ -78,6 +79,15 @@
     row-gap: 35px;
 }
 
+.cards__game-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around;
+    width: 1034px;
+}
+
 .cards__game-header {
     display: flex;
     flex-direction: row;
@@ -96,6 +106,7 @@
 .cards__game-wrapper {
     display: flex;
     flex-direction: row;
+    column-gap: 57px;
     column-gap: 57px;
     justify-content: flex-end;
     margin-right: 14px;
@@ -119,16 +130,6 @@
 
 .cards__game-btn {
     margin-top: 40px;
-}
-
-.cards__game-field {
-    display: flex;
-    flex-direction: row;
-    /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-around;
-    width: 1034px;
 }
 
 .cards__game-item {
@@ -409,4 +410,4 @@ body {
 
 .defaultCard {
     background: url('./img/card-bg.jpg');
-}
+} /*# sourceMappingURL=style.css.map */

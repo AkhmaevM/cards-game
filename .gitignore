@@ -7,3 +7,6 @@ node_modules
 .husky
 .eslintrc.yml
 dist/
+src/level_1.ts
+src/level_2.ts
+src/level_3.ts

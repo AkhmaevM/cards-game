@@ -1,3 +1,6 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+/* stylelint-disable selector-class-pattern */
+
 @import 'form';
 @import 'game';
 @import 'cards-bg';
@@ -30,8 +33,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-   
 }
 
 .btn {
