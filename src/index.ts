@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { renderStartScreen } from './renderScreens'
+import { renderStartScreen } from './render-screens'
 // import { firstLevel } from './level_1'
 // import { secondLevel } from './level_2'
 // import { thirdLevel } from './level_3'

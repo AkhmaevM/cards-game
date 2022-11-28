@@ -52,6 +52,125 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/gameplay.ts":
+/*!*************************!*\
+  !*** ./src/gameplay.ts ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "handleCard": () => (/* binding */ handleCard),
+/* harmony export */   "startGame": () => (/* binding */ startGame)
+/* harmony export */ });
+/* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
+/* harmony import */ var _render_screens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./render-screens */ "./src/render-screens.ts");
+/* harmony import */ var _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/img/loose-screen.png */ "./style/img/loose-screen.png");
+/* harmony import */ var _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style/img/win-screen.png */ "./style/img/win-screen.png");
+
+
+
+
+function startGame() {
+    var cardItem = document.querySelectorAll('.card-img');
+    var _loop_1 = function (i) {
+        cardItem[i].addEventListener('click', function () {
+            handleCard(cardItem[i], i);
+        });
+    };
+    for (var i = 0; i < cardItem.length; i++) {
+        _loop_1(i);
+    }
+}
+// сюда будет складывать карты (номера), которые правильно были выбраны
+var result = [];
+// здесь будем хранить по две карты, на каждом ходе
+var selected = [];
+// функция принимает на вход dom элемент с картой и код карты
+function handleCard(cardNode, cardNumber) {
+    var _a, _b;
+    // если карта перевернута, то ничего не делаем
+    if (!cardNode.classList.contains('defaultCard')) {
+        return;
+    }
+    // иначе показываем карту
+    cardNode.classList.remove('defaultCard');
+    // и начинаем проверять
+    // если уже выбрана одна карта
+    if (selected.length === 1) {
+        // тогда положем вторую карту в массив выбранных карт
+        selected.push(cardNumber);
+        // и сравним их между собой
+        var first = selected[0], second = selected[1];
+        // если карты равны
+        if (first === second) {
+            // тогда положим их в результирующий массив
+            result.push(first, second);
+            // и очистим массив выбранных карт
+            selected = [];
+        }
+        else {
+            // иначе проигрыш
+            // alert('вы проиграли')
+            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
+            (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
+            var finalTitle = document.querySelector('.cards__final-title');
+            var finalScrImg = document.querySelector('.cards__final-image');
+            if (finalScrImg) {
+                finalScrImg.src = _style_img_loose_screen_png__WEBPACK_IMPORTED_MODULE_2__;
+            }
+            if (finalTitle) {
+                finalTitle.textContent = 'Вы проиграли!';
+            }
+            var gameField = document.querySelector('.cards__game');
+            if (gameField) {
+                gameField.style.opacity = '0.7';
+            }
+            (_a = document
+                .querySelector('.cards__final-btn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function (e) {
+                e.preventDefault();
+                (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
+                (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
+            });
+            return;
+        }
+        // если это первая карта из пары проверяемых карт, тогда просто кладем ее в массив
+    }
+    else {
+        selected.push(cardNumber);
+    }
+    // тут вместо цифры 6, которая соответствует количеству карт на минимальной сложности
+    // надо подставить количество карт в зависимости от выбранного уровня сложности
+    if (result.length === 6) {
+        // если проверили все карты правильно, то мы победили
+        // alert('win')
+        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
+        (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
+        var finalTitle = document.querySelector('.cards__final-title');
+        var finalScrImg = document.querySelector('.cards__final-image');
+        if (finalScrImg) {
+            finalScrImg.src = _style_img_win_screen_png__WEBPACK_IMPORTED_MODULE_3__;
+        }
+        if (finalTitle) {
+            finalTitle.textContent = 'Вы выиграли!';
+        }
+        var gameField = document.querySelector('.cards__game');
+        if (gameField) {
+            gameField.style.opacity = '0.7';
+        }
+        (_b = document
+            .querySelector('.cards__final-btn')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', function (e) {
+            e.preventDefault();
+            (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderStartScreen)();
+            (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.resetTimer)();
+        });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/level-handler.ts":
 /*!******************************!*\
   !*** ./src/level-handler.ts ***!
@@ -63,8 +182,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "renderLevel": () => (/* binding */ renderLevel)
 /* harmony export */ });
-/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
+/* harmony import */ var _render_screens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render-screens */ "./src/render-screens.ts");
 /* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
+/* harmony import */ var _gameplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gameplay */ "./src/gameplay.ts");
+
 
 
 
@@ -79,17 +200,14 @@ __webpack_require__.r(__webpack_exports__);
 // 3. сгенерированный массив соответствует случайным картам, теперь чтобы сделать их "парными" можно просто сделать копию этого массива и склеить два массива в 1. Таким образом мы получим новый массив из 6, 12 или 18 карт
 // 4. теперь можно "размешать" этот массив и получим абсолютно случайны порядок карт
 function renderLevel(level) {
-    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderGameField)();
-    setTimeout(function () {
-        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.startTimer)();
-    }, 5000);
+    (0,_render_screens__WEBPACK_IMPORTED_MODULE_0__.renderGameField)();
     var restartBtn = document.querySelector('.cards__game-btn');
     restartBtn === null || restartBtn === void 0 ? void 0 : restartBtn.addEventListener('click', function () {
-        if (_renderScreens__WEBPACK_IMPORTED_MODULE_0__.cards) {
-            _renderScreens__WEBPACK_IMPORTED_MODULE_0__.cards.innerHTML = '';
+        if (_render_screens__WEBPACK_IMPORTED_MODULE_0__.cards) {
+            _render_screens__WEBPACK_IMPORTED_MODULE_0__.cards.innerHTML = '';
         }
         (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.resetTimer)();
-        (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
+        (0,_render_screens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
     });
     var arr = [];
     // собираем массив случайных НЕПОВТОРЯЮЩИХСЯ карт
@@ -126,6 +244,13 @@ function renderLevel(level) {
         cardItemDiv.classList.add('card-img', "item-".concat(card), 'cards__game-item');
         cardListDiv.appendChild(cardItemDiv);
     });
+    setTimeout(function () {
+        document.querySelectorAll('.cards__game-item').forEach(function (card) {
+            card.classList.add('defaultCard');
+            (0,_gameplay__WEBPACK_IMPORTED_MODULE_2__.startGame)();
+        });
+        (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.startTimer)();
+    }, 5000);
 }
 
 
@@ -200,10 +325,10 @@ function getShowTime() {
 
 /***/ }),
 
-/***/ "./src/renderScreens.ts":
-/*!******************************!*\
-  !*** ./src/renderScreens.ts ***!
-  \******************************/
+/***/ "./src/render-screens.ts":
+/*!*******************************!*\
+  !*** ./src/render-screens.ts ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -296,6 +421,28 @@ function renderResultsScreen() {
 }
 
 
+/***/ }),
+
+/***/ "./style/img/loose-screen.png":
+/*!************************************!*\
+  !*** ./style/img/loose-screen.png ***!
+  \************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "e3c6d13378fd14838171.png";
+
+/***/ }),
+
+/***/ "./style/img/win-screen.png":
+/*!**********************************!*\
+  !*** ./style/img/win-screen.png ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "e9a23012fa19ebafb807.png";
+
 /***/ })
 
 /******/ 	});
@@ -349,6 +496,18 @@ function renderResultsScreen() {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -365,6 +524,26 @@ function renderResultsScreen() {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -374,7 +553,7 @@ var __webpack_exports__ = {};
   !*** ./src/index.ts ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _renderScreens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderScreens */ "./src/renderScreens.ts");
+/* harmony import */ var _render_screens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render-screens */ "./src/render-screens.ts");
 /* harmony import */ var _level_handler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level-handler */ "./src/level-handler.ts");
 /* harmony import */ var _style_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/style.css */ "./style/style.css");
 /* eslint-disable no-unused-vars */
@@ -385,7 +564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 addEventListener('DOMContentLoaded', function () {
-    (0,_renderScreens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
+    (0,_render_screens__WEBPACK_IMPORTED_MODULE_0__.renderStartScreen)();
     var cardsFormBtn = document.querySelector('.cards__form-btn');
     var easyLevel = document.querySelector('.easy');
     var mediumLevel = document.querySelector('.medium');

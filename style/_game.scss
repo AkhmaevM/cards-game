@@ -9,12 +9,10 @@
         row-gap: 35px;
         
         &-list {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
             width: 1034px;
+            gap: 16px
         }
         
         &-header {

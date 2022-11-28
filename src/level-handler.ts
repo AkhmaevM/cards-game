@@ -1,6 +1,7 @@
-import { renderGameField, renderStartScreen } from "./renderScreens"
+import { renderGameField, renderStartScreen } from "./render-screens"
 import { startTimer, resetTimer } from './lib/stopwatch'
-import { cards } from "./renderScreens"
+import { cards } from "./render-screens"
+import { startGame } from "./gameplay";
 // наши карты это картинки с именами от 0 до 35 в формате png
 // для каждого уровня сложности нужно сгенерировать либо фиксированное количество случайных пар
 // для первого уровня 3 пары - 6 карт
@@ -16,10 +17,6 @@ import { cards } from "./renderScreens"
 export function renderLevel(level: number) {
     renderGameField()
     
-    setTimeout(() => {
-        startTimer()
-    }, 5000);
-
     const restartBtn = document.querySelector('.cards__game-btn')
     restartBtn?.addEventListener('click', ()=>{
         if (cards) {
@@ -70,5 +67,15 @@ export function renderLevel(level: number) {
         cardItemDiv.classList.add('card-img', `item-${card}`, 'cards__game-item')
         cardListDiv.appendChild(cardItemDiv)
     })
+
+    setTimeout(() => {
+        document.querySelectorAll('.cards__game-item').forEach(card => {
+            card.classList.add('defaultCard')
+            startGame()
+        });
+        startTimer()
+
+
+    }, 5000);
 
 }

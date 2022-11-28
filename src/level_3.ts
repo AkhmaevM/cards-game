@@ -5,7 +5,7 @@ import {
     renderGameField,
     renderResultsScreen,
     cardsObj,
-} from './renderScreens'
+} from './render-screens'
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 export function thirdLevel() {
