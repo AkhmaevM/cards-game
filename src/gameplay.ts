@@ -3,17 +3,17 @@ import { renderResultsScreen, renderStartScreen } from './render-screens'
 import looseScreen from '../style/img/loose-screen.png'
 import winScreen from '../style/img/win-screen.png'
 
-export function startGame() {
-    const cardItem = document.querySelectorAll(
-        '.card-img'
-    ) as NodeListOf<HTMLDivElement>
+// export function startGame(level:number) {
+//     const cardItem = document.querySelectorAll(
+//         '.card-img'
+//     ) as NodeListOf<HTMLDivElement>
 
-    for (let i = 0; i < cardItem.length; i++) {
-        cardItem[i].addEventListener('click', () => {
-            handleCard(cardItem[i], i)
-        })
-    }
-}
+//     for (let i = 0; i < cardItem.length; i++) {
+//         cardItem[i].addEventListener('click', () => {
+//             handleCard(cardItem[i], i, level)
+//         })
+//     }
+// }
 
 // сюда будет складывать карты (номера), которые правильно были выбраны
 const result: number[] = []
@@ -21,7 +21,7 @@ const result: number[] = []
 let selected: number[] = []
 
 // функция принимает на вход dom элемент с картой и код карты
-export function handleCard(cardNode: HTMLDivElement, cardNumber: number) {
+export function handleCard(cardNode: HTMLDivElement, cardNumber: number, level:number) {
     // если карта перевернута, то ничего не делаем
     if (!cardNode.classList.contains('defaultCard')) {
         return
@@ -40,6 +40,7 @@ export function handleCard(cardNode: HTMLDivElement, cardNumber: number) {
         if (first === second) {
             // тогда положим их в результирующий массив
             result.push(first, second)
+            console.log(result);
             // и очистим массив выбранных карт
             selected = []
         } else {
@@ -81,9 +82,13 @@ export function handleCard(cardNode: HTMLDivElement, cardNumber: number) {
         selected.push(cardNumber)
     }
 
+    console.log(level);
+    
+
+    
     // тут вместо цифры 6, которая соответствует количеству карт на минимальной сложности
     // надо подставить количество карт в зависимости от выбранного уровня сложности
-    if (result.length === 6) {
+    if (result.length === (level*2)) {
         // если проверили все карты правильно, то мы победили
         // alert('win')
         pauseTimer()

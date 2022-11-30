@@ -1,7 +1,7 @@
 import { renderGameField, renderStartScreen } from "./render-screens"
 import { startTimer, resetTimer } from './lib/stopwatch'
 import { cards } from "./render-screens"
-import { startGame } from "./gameplay";
+import { handleCard } from "./gameplay";
 // наши карты это картинки с именами от 0 до 35 в формате png
 // для каждого уровня сложности нужно сгенерировать либо фиксированное количество случайных пар
 // для первого уровня 3 пары - 6 карт
@@ -44,13 +44,14 @@ export function renderLevel(level: number) {
             }
         }
     }
+    console.log(arr);
 
     // копируем полученный массив и формируем "пары"
     let cardSet = arr.concat(arr)
     // теперь "перемешаем" полученный массив парных карт
     cardSet = cardSet.sort(() => Math.random() - 0.5)
     console.log(cardSet)
-
+    
     // теперь на основе этого массива можно легко простроить список карт
     // создаем контейнер куда будем класть div элементы с карточками
     const gameField = document.querySelector('.cards__game')
@@ -66,12 +67,17 @@ export function renderLevel(level: number) {
         
         cardItemDiv.classList.add('card-img', `item-${card}`, 'cards__game-item')
         cardListDiv.appendChild(cardItemDiv)
+
+        cardItemDiv.addEventListener('click', ()=>{
+            handleCard(cardItemDiv, card, level)
+        })
+
     })
 
     setTimeout(() => {
         document.querySelectorAll('.cards__game-item').forEach(card => {
             card.classList.add('defaultCard')
-            startGame()
+            // startGame(level)
         });
         startTimer()
 

@@ -61,8 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handleCard": () => (/* binding */ handleCard),
-/* harmony export */   "startGame": () => (/* binding */ startGame)
+/* harmony export */   "handleCard": () => (/* binding */ handleCard)
 /* harmony export */ });
 /* harmony import */ var _lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/stopwatch */ "./src/lib/stopwatch.ts");
 /* harmony import */ var _render_screens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./render-screens */ "./src/render-screens.ts");
@@ -72,23 +71,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function startGame() {
-    var cardItem = document.querySelectorAll('.card-img');
-    var _loop_1 = function (i) {
-        cardItem[i].addEventListener('click', function () {
-            handleCard(cardItem[i], i);
-        });
-    };
-    for (var i = 0; i < cardItem.length; i++) {
-        _loop_1(i);
-    }
-}
+// export function startGame(level:number) {
+//     const cardItem = document.querySelectorAll(
+//         '.card-img'
+//     ) as NodeListOf<HTMLDivElement>
+//     for (let i = 0; i < cardItem.length; i++) {
+//         cardItem[i].addEventListener('click', () => {
+//             handleCard(cardItem[i], i, level)
+//         })
+//     }
+// }
 // сюда будет складывать карты (номера), которые правильно были выбраны
 var result = [];
 // здесь будем хранить по две карты, на каждом ходе
 var selected = [];
 // функция принимает на вход dom элемент с картой и код карты
-function handleCard(cardNode, cardNumber) {
+function handleCard(cardNode, cardNumber, level) {
     var _a, _b;
     // если карта перевернута, то ничего не делаем
     if (!cardNode.classList.contains('defaultCard')) {
@@ -107,6 +105,7 @@ function handleCard(cardNode, cardNumber) {
         if (first === second) {
             // тогда положим их в результирующий массив
             result.push(first, second);
+            console.log(result);
             // и очистим массив выбранных карт
             selected = [];
         }
@@ -140,9 +139,10 @@ function handleCard(cardNode, cardNumber) {
     else {
         selected.push(cardNumber);
     }
+    console.log(level);
     // тут вместо цифры 6, которая соответствует количеству карт на минимальной сложности
     // надо подставить количество карт в зависимости от выбранного уровня сложности
-    if (result.length === 6) {
+    if (result.length === (level * 2)) {
         // если проверили все карты правильно, то мы победили
         // alert('win')
         (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
@@ -226,6 +226,7 @@ function renderLevel(level) {
             }
         }
     }
+    console.log(arr);
     // копируем полученный массив и формируем "пары"
     var cardSet = arr.concat(arr);
     // теперь "перемешаем" полученный массив парных карт
@@ -243,11 +244,14 @@ function renderLevel(level) {
         var cardItemDiv = document.createElement('div');
         cardItemDiv.classList.add('card-img', "item-".concat(card), 'cards__game-item');
         cardListDiv.appendChild(cardItemDiv);
+        cardItemDiv.addEventListener('click', function () {
+            (0,_gameplay__WEBPACK_IMPORTED_MODULE_2__.handleCard)(cardItemDiv, card, level);
+        });
     });
     setTimeout(function () {
         document.querySelectorAll('.cards__game-item').forEach(function (card) {
             card.classList.add('defaultCard');
-            (0,_gameplay__WEBPACK_IMPORTED_MODULE_2__.startGame)();
+            // startGame(level)
         });
         (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.startTimer)();
     }, 5000);
