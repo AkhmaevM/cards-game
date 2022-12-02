@@ -1,409 +1,389 @@
 /* stylelint-disable declaration-block-no-redundant-longhand-properties */
 /* stylelint-disable selector-class-pattern */
 .cards__start {
-    border-radius: 12px;
-    width: 480px;
-    height: 459px;
-    background: #c2f5ff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: 20vw;
-    margin-top: 10vh;
+  border-radius: 12px;
+  width: 480px;
+  height: 459px;
+  background: #c2f5ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20vw;
+  margin-top: 10vh;
 }
-
 .cards__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .cards__form-title {
-    padding-bottom: 48px;
-    width: 208px;
-    height: 96px;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 48px;
-    text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #004980;
+  padding-bottom: 48px;
+  width: 208px;
+  height: 96px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
 }
-
 .cards__form-levels {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    column-gap: 24px;
-    padding-bottom: 67px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+  padding-bottom: 67px;
 }
-
 .cards__form-levelHead {
-    background: #fff;
-    border-radius: 12px;
-    width: 97px;
-    height: 98px;
-    font-family: StratosSkyeng, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 72px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    color: #0080c1;
+  width: 98px;
+  height: 98px;
+  background: #ffffff;
+  border-radius: 12px;
+  width: 97px;
+  height: 98px;
+  font-family: StratosSkyeng, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #0080c1;
 }
-
 .cards__form-levelHead:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 .cards__form-level:checked + .cards__form-levelHead {
-    border: 1px solid #0080c1;
+  border: 1px solid #0080c1;
 }
-
 .cards__form-level {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
 }
 
 .cards__game {
-    width: 1034px;
-    height: 700px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 35px;
+  width: 1034px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 35px;
+  margin-left: 5vw;
 }
-
 .cards__game-list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    width: 1034px;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 1034px;
+  gap: 16px;
 }
-
 .cards__game-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-
 .cards__game-time {
-    color: white;
-    font-family: StratosSkyeng, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    width: 155px;
+  color: white;
+  font-family: StratosSkyeng, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  width: 155px;
 }
-
 .cards__game-wrapper {
-    display: flex;
-    flex-direction: row;
-    column-gap: 57px;
-    justify-content: flex-end;
-    margin-right: 14px;
-    height: 33px;
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 57px;
+       column-gap: 57px;
+  justify-content: flex-end;
+  margin-right: 14px;
+  height: 33px;
 }
-
-.cards__game-min,
-.cards__game-sek {
-    font-size: 16px;
-    line-height: 32px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #fff;
+.cards__game-min, .cards__game-sek {
+  font-size: 16px;
+  line-height: 32px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #ffffff;
 }
-
 .cards__game-timer {
-    font-size: 64px;
-    line-height: 72px;
-    color: #fff;
-    font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #ffffff;
+  font-weight: 400;
 }
-
 .cards__game-btn {
-    margin-top: 40px;
+  margin-top: 40px;
 }
-
 .cards__game-item {
-    width: 95px;
-    height: 133px;
+  width: 95px;
+  height: 133px;
 }
-
 .cards__game-item:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .item-1 {
-    background: url('./img/cards/0.png');
+  background: url("./img/cards/0.png");
 }
 
 .item-2 {
-    background: url('./img/cards/1.png');
+  background: url("./img/cards/1.png");
 }
 
 .item-3 {
-    background: url('./img/cards/2.png');
+  background: url("./img/cards/2.png");
 }
 
 .item-4 {
-    background: url('./img/cards/3.png');
+  background: url("./img/cards/3.png");
 }
 
 .item-5 {
-    background: url('./img/cards/4.png');
+  background: url("./img/cards/4.png");
 }
 
 .item-6 {
-    background: url('./img/cards/5.png');
+  background: url("./img/cards/5.png");
 }
 
 .item-7 {
-    background: url('./img/cards/6.png');
+  background: url("./img/cards/6.png");
 }
 
 .item-8 {
-    background: url('./img/cards/7.png');
+  background: url("./img/cards/7.png");
 }
 
 .item-9 {
-    background: url('./img/cards/8.png');
+  background: url("./img/cards/8.png");
 }
 
 .item-10 {
-    background: url('./img/cards/9.png');
+  background: url("./img/cards/9.png");
 }
 
 .item-11 {
-    background: url('./img/cards/10.png');
+  background: url("./img/cards/10.png");
 }
 
 .item-12 {
-    background: url('./img/cards/11.png');
+  background: url("./img/cards/11.png");
 }
 
 .item-13 {
-    background: url('./img/cards/12.png');
+  background: url("./img/cards/12.png");
 }
 
 .item-14 {
-    background: url('./img/cards/13.png');
+  background: url("./img/cards/13.png");
 }
 
 .item-15 {
-    background: url('./img/cards/14.png');
+  background: url("./img/cards/14.png");
 }
 
 .item-16 {
-    background: url('./img/cards/15.png');
+  background: url("./img/cards/15.png");
 }
 
 .item-17 {
-    background: url('./img/cards/16.png');
+  background: url("./img/cards/16.png");
 }
 
 .item-18 {
-    background: url('./img/cards/17.png');
+  background: url("./img/cards/17.png");
 }
 
 .item-19 {
-    background: url('./img/cards/18.png');
+  background: url("./img/cards/18.png");
 }
 
 .item-20 {
-    background: url('./img/cards/19.png');
+  background: url("./img/cards/19.png");
 }
 
 .item-21 {
-    background: url('./img/cards/20.png');
+  background: url("./img/cards/20.png");
 }
 
 .item-22 {
-    background: url('./img/cards/21.png');
+  background: url("./img/cards/21.png");
 }
 
 .item-23 {
-    background: url('./img/cards/22.png');
+  background: url("./img/cards/22.png");
 }
 
 .item-24 {
-    background: url('./img/cards/23.png');
+  background: url("./img/cards/23.png");
 }
 
 .item-25 {
-    background: url('./img/cards/24.png');
+  background: url("./img/cards/24.png");
 }
 
 .item-26 {
-    background: url('./img/cards/25.png');
+  background: url("./img/cards/25.png");
 }
 
 .item-27 {
-    background: url('./img/cards/26.png');
+  background: url("./img/cards/26.png");
 }
 
 .item-28 {
-    background: url('./img/cards/27.png');
+  background: url("./img/cards/27.png");
 }
 
 .item-29 {
-    background: url('./img/cards/28.png');
+  background: url("./img/cards/28.png");
 }
 
 .item-30 {
-    background: url('./img/cards/29.png');
+  background: url("./img/cards/29.png");
 }
 
 .item-31 {
-    background: url('./img/cards/30.png');
+  background: url("./img/cards/30.png");
 }
 
 .item-32 {
-    background: url('./img/cards/31.png');
+  background: url("./img/cards/31.png");
 }
 
 .item-33 {
-    background: url('./img/cards/32.png');
+  background: url("./img/cards/32.png");
 }
 
 .item-34 {
-    background: url('./img/cards/33.png');
+  background: url("./img/cards/33.png");
 }
 
 .item-35 {
-    background: url('./img/cards/34.png');
+  background: url("./img/cards/34.png");
 }
 
 .item-36 {
-    background: url('./img/cards/35.png');
+  background: url("./img/cards/35.png");
 }
 
 .cards__final {
-    width: 480px;
-    height: 459px;
-    background: #c2f5ff;
-    border-radius: 12px;
-    margin-left: 20vw;
-    margin-bottom: 15vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    z-index: 10;
+  width: 480px;
+  height: 459px;
+  background: #C2F5FF;
+  border-radius: 12px;
+  margin-left: 20vw;
+  margin-bottom: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
 }
-
 .cards__final-image {
-    margin-top: 28px;
+  margin-top: 28px;
 }
-
 .cards__final-title {
-    font-size: 40px;
-    line-height: 48px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #004980;
-    margin-top: 9px;
-    margin-bottom: 0;
+  font-size: 40px;
+  line-height: 48px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
+  margin-top: 9px;
+  margin-bottom: 0;
 }
-
 .cards__final-timer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 10px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  margin-top: 28px;
+  margin-bottom: 20px;
 }
-
 .cards__final-timer--text {
-    font-size: 24px;
-    line-height: 32px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #000;
-    width: 230px;
-    height: 32px;
-    font-weight: 400;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  width: 230px;
+  height: 32px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-
 .cards__final-timer--numbers {
-    margin-top: 0;
-    font-weight: 600;
-    font-size: 64px;
-    line-height: 72px;
-    color: #000;
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 72px;
+  color: #000000;
 }
-
 .cards__final-btn {
-    background: #7ac100;
-    border-radius: 12px;
-    width: 246px;
-    height: 50px;
-    font-size: 24px;
-    line-height: 32px;
-    text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #fff;
-    border: 0;
-    margin-bottom: 48px;
+  background: #7AC100;
+  border-radius: 12px;
+  width: 246px;
+  height: 50px;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #FFFFFF;
+  border: 0px;
+  margin-bottom: 48px;
 }
-
 .cards__final-btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @font-face {
-    font-family: StratosSkyeng, sans-serif;
-    src: url('../Web_fonts/stratosskyengweb-medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: auto;
+  font-family: StratosSkyeng, sans-serif;
+  src: url("../Web_fonts/stratosskyengweb-medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: auto;
 }
-
 body {
-    background: #1950b5;
-    font-style: normal;
-    font-family: StratosSkyeng, sans-serif;
+  background: #1950b5;
+  font-style: normal;
+  font-family: StratosSkyeng, sans-serif;
 }
 
 .cards {
-    margin-left: 10vw;
-    margin-top: 10vh;
-    background: #1950b5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin-left: 15vw;
+  margin-top: 10vh;
+  background: #1950b5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .btn {
-    width: 246px;
-    height: 50px;
-    background: #7ac100;
-    border-radius: 12px;
-    border: 0;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #fff;
-    justify-content: center;
+  width: 246px;
+  height: 50px;
+  background: #7ac100;
+  border-radius: 12px;
+  border: 0px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #ffffff;
+  justify-content: center;
 }
 
 .btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .hiden {
-    display: none;
+  display: none;
 }
 
 .defaultCard {
-    background: url('./img/card-bg.jpg');
-} /*# sourceMappingURL=style.css.map */
+  background: url("./img/card-bg.jpg");
+}/*# sourceMappingURL=style.css.map */

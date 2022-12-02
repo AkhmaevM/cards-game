@@ -7,7 +7,8 @@
         display: flex;
         flex-direction: column;
         row-gap: 35px;
-        
+        margin-left: 5vw;
+
         &-list {
             display: grid;
             grid-template-columns: repeat(6, 1fr);

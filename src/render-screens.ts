@@ -92,15 +92,7 @@ export function renderGameField() {
     }
 }
 
-// обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
-// Ранг будет обозначен числами от 6 до 14
-// Масть карты будет обозначена числами от 1 до 4
-// Индексы мастей:
-// Пики - 1, Черви - 2, Бубны - 3, Крести - 4
-// Например Туз пики будет обозначен как 14-1, 7 Черви как 7-2 и т.д.
-
-// ключи данного объекта будут использоваться для генерации рандомного расположения всех карт после старта таймера
-export const cardsObj :{[key: number]: string} ={
+export const cardsObj: { [key: number]: string } = {
     1: `<div class="cards__game-item item-1 defaultCard" id='14-1'></div>`,
     2: `<div class="cards__game-item item-2 defaultCard" id='13-1'></div>`,
     3: `<div class="cards__game-item item-3 defaultCard" id='12-1'></div>`,
@@ -156,7 +148,6 @@ export function renderResultsScreen() {
     const template = Handlebars.compile(resultScreen)
     const result = template('')
     if (cards) {
-        cards.innerHTML  += result
+        cards.innerHTML += result
     }
-    
 }

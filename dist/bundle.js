@@ -71,47 +71,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// export function startGame(level:number) {
-//     const cardItem = document.querySelectorAll(
-//         '.card-img'
-//     ) as NodeListOf<HTMLDivElement>
-//     for (let i = 0; i < cardItem.length; i++) {
-//         cardItem[i].addEventListener('click', () => {
-//             handleCard(cardItem[i], i, level)
-//         })
-//     }
-// }
-// сюда будет складывать карты (номера), которые правильно были выбраны
 var result = [];
-// здесь будем хранить по две карты, на каждом ходе
 var selected = [];
-// функция принимает на вход dom элемент с картой и код карты
 function handleCard(cardNode, cardNumber, level) {
     var _a, _b;
-    // если карта перевернута, то ничего не делаем
     if (!cardNode.classList.contains('defaultCard')) {
         return;
     }
-    // иначе показываем карту
     cardNode.classList.remove('defaultCard');
-    // и начинаем проверять
-    // если уже выбрана одна карта
     if (selected.length === 1) {
-        // тогда положем вторую карту в массив выбранных карт
         selected.push(cardNumber);
-        // и сравним их между собой
         var first = selected[0], second = selected[1];
-        // если карты равны
         if (first === second) {
-            // тогда положим их в результирующий массив
             result.push(first, second);
             console.log(result);
-            // и очистим массив выбранных карт
             selected = [];
         }
         else {
-            // иначе проигрыш
-            // alert('вы проиграли')
             (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
             (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
             var finalTitle = document.querySelector('.cards__final-title');
@@ -134,17 +110,12 @@ function handleCard(cardNode, cardNumber, level) {
             });
             return;
         }
-        // если это первая карта из пары проверяемых карт, тогда просто кладем ее в массив
     }
     else {
         selected.push(cardNumber);
     }
     console.log(level);
-    // тут вместо цифры 6, которая соответствует количеству карт на минимальной сложности
-    // надо подставить количество карт в зависимости от выбранного уровня сложности
-    if (result.length === (level * 2)) {
-        // если проверили все карты правильно, то мы победили
-        // alert('win')
+    if (result.length === level * 2) {
         (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_0__.pauseTimer)();
         (0,_render_screens__WEBPACK_IMPORTED_MODULE_1__.renderResultsScreen)();
         var finalTitle = document.querySelector('.cards__final-title');
@@ -189,16 +160,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// наши карты это картинки с именами от 0 до 35 в формате png
-// для каждого уровня сложности нужно сгенерировать либо фиксированное количество случайных пар
-// для первого уровня 3 пары - 6 карт
-// для первого уровня 6 пар  - 16 карт
-// для первого уровня 9 пар -  18 карт
-// алгоритм для генерации пар может быть такой
-// 1. генерируем массив случайных чисел от 1 до 36, так как у нас уже классы, которые устанавливают фон item-1 ... item-36
-// 2. в зависимости от уровня сложности это будет массив длиной 3, 6 или 9 элементов
-// 3. сгенерированный массив соответствует случайным картам, теперь чтобы сделать их "парными" можно просто сделать копию этого массива и склеить два массива в 1. Таким образом мы получим новый массив из 6, 12 или 18 карт
-// 4. теперь можно "размешать" этот массив и получим абсолютно случайны порядок карт
 function renderLevel(level) {
     (0,_render_screens__WEBPACK_IMPORTED_MODULE_0__.renderGameField)();
     var restartBtn = document.querySelector('.cards__game-btn');
@@ -251,7 +212,6 @@ function renderLevel(level) {
     setTimeout(function () {
         document.querySelectorAll('.cards__game-item').forEach(function (card) {
             card.classList.add('defaultCard');
-            // startGame(level)
         });
         (0,_lib_stopwatch__WEBPACK_IMPORTED_MODULE_1__.startTimer)();
     }, 5000);
@@ -370,13 +330,6 @@ function renderGameField() {
         cards.innerHTML = result;
     }
 }
-// обозначим ранги и масти карт целочисленными индексами и запишем их в id атрибут каждой карты
-// Ранг будет обозначен числами от 6 до 14
-// Масть карты будет обозначена числами от 1 до 4
-// Индексы мастей:
-// Пики - 1, Черви - 2, Бубны - 3, Крести - 4
-// Например Туз пики будет обозначен как 14-1, 7 Черви как 7-2 и т.д.
-// ключи данного объекта будут использоваться для генерации рандомного расположения всех карт после старта таймера
 var cardsObj = {
     1: "<div class=\"cards__game-item item-1 defaultCard\" id='14-1'></div>",
     2: "<div class=\"cards__game-item item-2 defaultCard\" id='13-1'></div>",
@@ -562,9 +515,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/style.css */ "./style/style.css");
 /* eslint-disable no-unused-vars */
 
-// import { firstLevel } from './level_1'
-// import { secondLevel } from './level_2'
-// import { thirdLevel } from './level_3'
 
 
 addEventListener('DOMContentLoaded', function () {
